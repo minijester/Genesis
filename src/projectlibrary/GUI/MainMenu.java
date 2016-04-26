@@ -43,6 +43,7 @@ public class MainMenu extends javax.swing.JFrame {
         library.setText("Library System");
 
         info.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Information icon.png"))); // NOI18N
         info.setText("Check Information");
         info.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,6 +52,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         search.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/book-icon.png"))); // NOI18N
         search.setText("Book Searching");
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,6 +61,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         backlog.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        backlog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/notepad-icon.png"))); // NOI18N
         backlog.setText("Backlog");
         backlog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,40 +82,39 @@ public class MainMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(info)
+                .addGap(26, 26, 26)
+                .addComponent(search)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(library))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(info)
-                        .addGap(26, 26, 26)
-                        .addComponent(search)))
-                .addContainerGap(37, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(backlog, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(205, 205, 205)
-                        .addComponent(logout)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(backlog, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(143, 143, 143))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(logout)
+                        .addGap(209, 209, 209))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(library)
+                .addGap(145, 145, 145))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(36, 36, 36)
                 .addComponent(library)
-                .addGap(31, 31, 31)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(info, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                     .addComponent(search, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(26, 26, 26)
+                .addGap(47, 47, 47)
                 .addComponent(backlog, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addGap(44, 44, 44)
                 .addComponent(logout)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
