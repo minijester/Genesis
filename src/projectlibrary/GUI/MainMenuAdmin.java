@@ -29,6 +29,7 @@ public class MainMenuAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         library = new javax.swing.JLabel();
         infor = new javax.swing.JButton();
         bs = new javax.swing.JButton();
@@ -37,13 +38,18 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         burrow = new javax.swing.JButton();
         returnsys = new javax.swing.JButton();
         logout = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Admin");
         setResizable(false);
 
+        jPanel1.setLayout(null);
+
         library.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
         library.setText("Library System");
+        jPanel1.add(library);
+        library.setBounds(200, 50, 238, 47);
 
         infor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         infor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Information icon.png"))); // NOI18N
@@ -53,6 +59,8 @@ public class MainMenuAdmin extends javax.swing.JFrame {
                 inforActionPerformed(evt);
             }
         });
+        jPanel1.add(infor);
+        infor.setBounds(20, 130, 263, 41);
 
         bs.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         bs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Book-searching icon.png"))); // NOI18N
@@ -62,6 +70,8 @@ public class MainMenuAdmin extends javax.swing.JFrame {
                 bsActionPerformed(evt);
             }
         });
+        jPanel1.add(bs);
+        bs.setBounds(30, 210, 231, 41);
 
         bl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         bl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/notepad-icon.png"))); // NOI18N
@@ -71,6 +81,8 @@ public class MainMenuAdmin extends javax.swing.JFrame {
                 blActionPerformed(evt);
             }
         });
+        jPanel1.add(bl);
+        bl.setBounds(70, 300, 149, 41);
 
         ab.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         ab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add-book-icon.png"))); // NOI18N
@@ -80,6 +92,8 @@ public class MainMenuAdmin extends javax.swing.JFrame {
                 abActionPerformed(evt);
             }
         });
+        jPanel1.add(ab);
+        ab.setBounds(430, 210, 169, 41);
 
         burrow.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         burrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/borrow-icon.png"))); // NOI18N
@@ -89,6 +103,8 @@ public class MainMenuAdmin extends javax.swing.JFrame {
                 burrowActionPerformed(evt);
             }
         });
+        jPanel1.add(burrow);
+        burrow.setBounds(390, 130, 229, 41);
 
         returnsys.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         returnsys.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Return-icon.png"))); // NOI18N
@@ -98,6 +114,8 @@ public class MainMenuAdmin extends javax.swing.JFrame {
                 returnsysActionPerformed(evt);
             }
         });
+        jPanel1.add(returnsys);
+        returnsys.setBounds(390, 300, 225, 41);
 
         logout.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         logout.setText("Log out");
@@ -106,52 +124,23 @@ public class MainMenuAdmin extends javax.swing.JFrame {
                 logoutActionPerformed(evt);
             }
         });
+        jPanel1.add(logout);
+        logout.setBounds(260, 400, 113, 37);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sandy\\Desktop\\Icons for Oop\\LibraryBackground.png")); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(-6, 0, 680, 500);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(infor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(burrow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ab, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bs)
-                    .addComponent(returnsys, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(logout)
-                .addGap(256, 256, 256))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(library)
-                .addGap(187, 187, 187))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(library)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(infor, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bs, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bl, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                    .addComponent(ab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(burrow, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(returnsys, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(logout)
-                .addGap(37, 37, 37))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
         );
 
         pack();
@@ -207,6 +196,8 @@ public class MainMenuAdmin extends javax.swing.JFrame {
     private javax.swing.JButton bs;
     private javax.swing.JButton burrow;
     private javax.swing.JButton infor;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel library;
     private javax.swing.JButton logout;
     private javax.swing.JButton returnsys;
