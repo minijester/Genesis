@@ -95,6 +95,7 @@ public class Backlog extends javax.swing.JFrame {
         });
 
         show.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/notepad-icon.png"))); // NOI18N
         show.setText("Show Backlog");
         show.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +125,7 @@ public class Backlog extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addComponent(backlog)
                 .addGap(42, 42, 42)
                 .addComponent(show)
