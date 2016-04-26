@@ -55,7 +55,7 @@ public class Burrow extends javax.swing.JFrame {
         setResizable(false);
 
         burrowSystem.setFont(new java.awt.Font("Stencil", 1, 36)); // NOI18N
-        burrowSystem.setText("Burrow System");
+        burrowSystem.setText("Borrow System");
 
         user.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         user.setText("User :");
@@ -73,7 +73,7 @@ public class Burrow extends javax.swing.JFrame {
         isbntxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         burrow.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        burrow.setText("Burrow");
+        burrow.setText("Borrow");
         burrow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 burrowActionPerformed(evt);
