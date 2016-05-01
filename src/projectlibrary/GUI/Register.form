@@ -43,26 +43,33 @@
                               <Component id="subdistricttxt" min="-2" pref="139" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="phonenum" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="phonenumtxt" min="-2" pref="134" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="district" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="districttxt" min="-2" pref="131" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="street" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="streettxt" min="-2" pref="115" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="province" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="provincetxt" min="-2" pref="112" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="district" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="districttxt" min="-2" pref="131" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="street" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="streettxt" min="-2" pref="115" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="province" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="provincetxt" min="-2" pref="112" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -109,31 +116,15 @@
                       <Component id="idtxt" min="-2" pref="239" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="192" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-          </Group>
+          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="49" max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="37" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="83" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="idtxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="id" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -157,37 +148,44 @@
                   <Component id="month" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="year" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="housedate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="housedatetxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="village" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="villagetxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="street" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="streettxt" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="housedate" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="housedatetxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="village" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="villagetxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="street" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="streettxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="subdistrict" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="subdistricttxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="district" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="districttxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="province" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="provincetxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="postcode" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="postcodetxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="phonenum" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="phonenumtxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="95" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="subdistrict" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="subdistricttxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="district" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="districttxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="province" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="provincetxt" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="postcode" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="postcodetxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="phonenum" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="phonenumtxt" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -198,7 +196,9 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Stencil" size="36" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Register System"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/projectlibrary/GUI/Register system.png"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="id">
