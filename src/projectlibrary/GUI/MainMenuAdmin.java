@@ -47,9 +47,9 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         library.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
-        library.setText("Library System");
+        library.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/Library Admin.png"))); // NOI18N
         jPanel1.add(library);
-        library.setBounds(200, 50, 238, 47);
+        library.setBounds(0, 0, 674, 90);
 
         infor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         infor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Information icon.png"))); // NOI18N
