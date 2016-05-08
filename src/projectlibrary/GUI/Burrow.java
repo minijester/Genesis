@@ -55,7 +55,7 @@ public class Burrow extends javax.swing.JFrame {
         setResizable(false);
 
         burrowSystem.setFont(new java.awt.Font("Stencil", 1, 36)); // NOI18N
-        burrowSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/Borrow.png"))); // NOI18N
+        burrowSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Borrow.png"))); // NOI18N
 
         user.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         user.setText("User :");
@@ -142,7 +142,7 @@ public class Burrow extends javax.swing.JFrame {
                     .addComponent(isbntxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(date)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(burrow)
                     .addComponent(cancel))
