@@ -44,12 +44,12 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         library.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
-        library.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/Library System.png"))); // NOI18N
+        library.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Library System.png"))); // NOI18N
         jPanel1.add(library);
         library.setBounds(0, 0, 670, 108);
 
         info.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Information icon.png"))); // NOI18N
+        info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Information icon.png"))); // NOI18N
         info.setText("Check Information");
         info.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,7 +60,7 @@ public class MainMenu extends javax.swing.JFrame {
         info.setBounds(10, 140, 263, 41);
 
         search.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/book-icon.png"))); // NOI18N
+        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/book-icon.png"))); // NOI18N
         search.setText("Book Searching");
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,7 +91,7 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel1.add(logout);
         logout.setBounds(230, 340, 93, 31);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Library.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Library.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(-50, -10, 610, 480);
