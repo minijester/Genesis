@@ -23,7 +23,7 @@ public class Burrow extends javax.swing.JFrame {
     String id;
     
     public Burrow(String id,String status) {
-        super("Burrow System");
+        super("Borrow System");
         this.status = status;
         this.id = id;
         initComponents();
@@ -55,7 +55,7 @@ public class Burrow extends javax.swing.JFrame {
         setResizable(false);
 
         burrowSystem.setFont(new java.awt.Font("Stencil", 1, 36)); // NOI18N
-        burrowSystem.setText("Burrow System");
+        burrowSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/Borrow.png"))); // NOI18N
 
         user.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         user.setText("User :");
@@ -73,7 +73,7 @@ public class Burrow extends javax.swing.JFrame {
         isbntxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         burrow.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        burrow.setText("Burrow");
+        burrow.setText("Borrow");
         burrow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 burrowActionPerformed(evt);
@@ -113,25 +113,22 @@ public class Burrow extends javax.swing.JFrame {
                             .addComponent(date))
                         .addGap(78, 78, 78)
                         .addComponent(isbntxt, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(burrowSystem)
-                        .addGap(101, 101, 101))
+                    .addComponent(burrowSystem, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(burrow)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(33, 33, 33)
                         .addComponent(cancel)
-                        .addGap(28, 28, 28))))
+                        .addGap(18, 18, 18))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
                 .addComponent(burrowSystem)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usertxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -145,11 +142,11 @@ public class Burrow extends javax.swing.JFrame {
                     .addComponent(isbntxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(date)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancel)
-                    .addComponent(burrow))
-                .addGap(40, 40, 40))
+                    .addComponent(burrow)
+                    .addComponent(cancel))
+                .addGap(10, 10, 10))
         );
 
         pack();
