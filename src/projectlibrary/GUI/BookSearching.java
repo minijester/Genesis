@@ -73,7 +73,7 @@ public class BookSearching extends javax.swing.JFrame {
 
         booksearch.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
         booksearch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        booksearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/Book search.png"))); // NOI18N
+        booksearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Book search.png"))); // NOI18N
 
         main.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         main.setText("Main Menu");
