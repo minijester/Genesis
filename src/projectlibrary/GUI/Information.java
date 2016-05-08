@@ -85,7 +85,7 @@ public class Information extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Stencil", 0, 24)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/Profile.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Profile.png"))); // NOI18N
 
         birthday.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         birthday.setText("Birthday :");
