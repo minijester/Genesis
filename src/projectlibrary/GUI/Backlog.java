@@ -48,7 +48,7 @@ public class Backlog extends javax.swing.JFrame {
         setResizable(false);
 
         backlog.setFont(new java.awt.Font("Stencil", 1, 36)); // NOI18N
-        backlog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/Backlog.png"))); // NOI18N
+        backlog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Backlog.png"))); // NOI18N
 
         backlogtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -107,16 +107,11 @@ public class Backlog extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, 0)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(192, 192, 192)
-                    .addComponent(main))
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, 0)
-                    .addComponent(backlog)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(192, 192, 192)
+                .addComponent(main))
+            .addComponent(backlog)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(show)
