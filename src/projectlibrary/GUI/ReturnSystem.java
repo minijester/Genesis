@@ -52,7 +52,7 @@ public class ReturnSystem extends javax.swing.JFrame {
         setResizable(false);
 
         returnsys.setFont(new java.awt.Font("Stencil", 1, 36)); // NOI18N
-        returnsys.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/Return.png"))); // NOI18N
+        returnsys.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Return.png"))); // NOI18N
 
         user.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         user.setText("User : ");
