@@ -58,7 +58,7 @@ public class Register extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Stencil", 1, 36)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/Register system.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Register system.png"))); // NOI18N
 
         id.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         id.setText("ID :");
