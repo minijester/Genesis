@@ -47,12 +47,12 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         library.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
-        library.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/Library Admin.png"))); // NOI18N
+        library.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Library Admin.png"))); // NOI18N
         jPanel1.add(library);
         library.setBounds(0, 0, 674, 90);
 
         infor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        infor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Information icon.png"))); // NOI18N
+        infor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Information icon.png"))); // NOI18N
         infor.setText("Check Information");
         infor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,7 +63,7 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         infor.setBounds(20, 130, 263, 41);
 
         bs.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        bs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Book-searching icon.png"))); // NOI18N
+        bs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Book-searching icon.png"))); // NOI18N
         bs.setText("Book Searching");
         bs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,7 +74,7 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         bs.setBounds(30, 210, 231, 41);
 
         bl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        bl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/notepad-icon.png"))); // NOI18N
+        bl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/notepad-icon.png"))); // NOI18N
         bl.setText("Backlog");
         bl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +85,7 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         bl.setBounds(70, 300, 149, 41);
 
         ab.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        ab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add-book-icon.png"))); // NOI18N
+        ab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/add-book-icon.png"))); // NOI18N
         ab.setText("Add Book");
         ab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +96,7 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         ab.setBounds(430, 210, 169, 41);
 
         burrow.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        burrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/borrow-icon.png"))); // NOI18N
+        burrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/borrow-icon.png"))); // NOI18N
         burrow.setText("Borrow System");
         burrow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,7 +107,7 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         burrow.setBounds(390, 130, 229, 41);
 
         returnsys.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        returnsys.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Return-icon.png"))); // NOI18N
+        returnsys.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Return-icon.png"))); // NOI18N
         returnsys.setText("Return System");
         returnsys.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +127,7 @@ public class MainMenuAdmin extends javax.swing.JFrame {
         jPanel1.add(logout);
         logout.setBounds(260, 400, 113, 37);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sandy\\Desktop\\Icons for Oop\\LibraryBackground.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/LibraryBackground.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(-6, 0, 680, 500);
