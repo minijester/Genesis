@@ -16,14 +16,12 @@ import javax.swing.JOptionPane;
  *
  * @author Sae
  */
-public class Burrow extends javax.swing.JFrame {
+public class Burrow extends SuperMenu {
 
     CSDbDelegate db ;
-    String status;
-    String id;
+
     
     public Burrow(String id,String status) {
-        super("Borrow System");
         this.status = status;
         this.id = id;
         initComponents();
@@ -49,6 +47,7 @@ public class Burrow extends javax.swing.JFrame {
         burrow = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
         date = new javax.swing.JLabel();
+        datepick = new org.jdesktop.swingx.JXDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Burrow System");
@@ -112,7 +111,9 @@ public class Burrow extends javax.swing.JFrame {
                             .addComponent(isbn)
                             .addComponent(date))
                         .addGap(78, 78, 78)
-                        .addComponent(isbntxt, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(isbntxt, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(datepick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -141,8 +142,10 @@ public class Burrow extends javax.swing.JFrame {
                     .addComponent(isbn)
                     .addComponent(isbntxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
-                .addComponent(date)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(date)
+                    .addComponent(datepick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(burrow)
                     .addComponent(cancel))
@@ -249,8 +252,7 @@ public class Burrow extends javax.swing.JFrame {
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         dispose();
-        MainMenuAdmin mainad = new MainMenuAdmin(id,status);
-        mainad.setVisible(true);
+        createMenuAdmin(status, id);
         // go back to admin mainmenu
     }//GEN-LAST:event_cancelActionPerformed
 
@@ -266,6 +268,7 @@ public class Burrow extends javax.swing.JFrame {
     private javax.swing.JLabel burrowSystem;
     private javax.swing.JButton cancel;
     private javax.swing.JLabel date;
+    private org.jdesktop.swingx.JXDatePicker datepick;
     private javax.swing.JLabel isbn;
     private javax.swing.JTextField isbntxt;
     private javax.swing.JLabel user;

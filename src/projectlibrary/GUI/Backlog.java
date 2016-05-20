@@ -15,10 +15,8 @@ import javax.swing.JPanel;
  *
  * @author Sae
  */
-public class Backlog extends javax.swing.JFrame {
+public class Backlog extends SuperMenu {
 
-    String status;
-    String id;
     CSDbDelegate db ;
     public Backlog(String id,String status) {
         initComponents();
@@ -136,12 +134,10 @@ public class Backlog extends javax.swing.JFrame {
     private void mainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainActionPerformed
         dispose();
         if(status == "Member"){
-            MainMenu mainmem = new MainMenu(id,status);
-            mainmem.setVisible(true);
+            createMenuMember(status, id);
         }
         else{
-            MainMenuAdmin  mainad = new MainMenuAdmin(id,status);
-            mainad.setVisible(true);
+            createMenuAdmin(status, id);
         }
     }//GEN-LAST:event_mainActionPerformed
 

@@ -9,10 +9,8 @@ package projectlibrary.GUI;
  *
  * @author Sae
  */
-public class MainMenuAdmin extends javax.swing.JFrame {
+public class MainMenuAdmin extends SuperMenu {
 
-    String status;
-    String id;
     
     public MainMenuAdmin(String id,String status) {
         this.status = status;
@@ -148,44 +146,37 @@ public class MainMenuAdmin extends javax.swing.JFrame {
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
         dispose();
-        Login d = new Login();
-        d.setVisible(true);
+        createNewLogin();
     }//GEN-LAST:event_logoutActionPerformed
 
     private void inforActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inforActionPerformed
         dispose();
-        Information c = new Information(id,status);
-        c.setVisible(true);
+        createInformation(status, id);
     }//GEN-LAST:event_inforActionPerformed
 
     private void bsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsActionPerformed
         dispose();
-        BookSearching b = new BookSearching(id,status);
-        b.setVisible(true);
+        createBookSearching(status, id);
     }//GEN-LAST:event_bsActionPerformed
 
     private void blActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blActionPerformed
         dispose();
-        Backlog bo = new Backlog(id,status);
-        bo.setVisible(true);
+        createBacklog(status, id);
     }//GEN-LAST:event_blActionPerformed
 
     private void abActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abActionPerformed
         dispose();
-        AddBook Add = new AddBook(id,status);
-        Add.setVisible(true);
+        createAddbook(status, id);
     }//GEN-LAST:event_abActionPerformed
 
     private void burrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_burrowActionPerformed
         dispose();
-        Burrow bu = new Burrow(id,status);
-        bu.setVisible(true);
+        createBurrow(status, id);
     }//GEN-LAST:event_burrowActionPerformed
 
     private void returnsysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnsysActionPerformed
         dispose();
-        ReturnSystem re = new ReturnSystem(id,status);
-        re.setVisible(true);
+        createReturn(status, id);
     }//GEN-LAST:event_returnsysActionPerformed
 
 

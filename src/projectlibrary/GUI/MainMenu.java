@@ -5,14 +5,15 @@
  */
 package projectlibrary.GUI;
 
+
 /**
  *
  * @author Sae
  */
-public class MainMenu extends javax.swing.JFrame {
 
-    String status;
-    String id;
+// เปลี่ยนจาก extend เป็น deligation
+public class MainMenu extends SuperMenu {
+
     public MainMenu(String id,String status) {
         initComponents();
         this.status = status;

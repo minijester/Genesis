@@ -12,10 +12,10 @@ import javax.swing.JOptionPane;
  *
  * @author Sae
  */
-public class Register extends javax.swing.JFrame {
+public class Register extends SuperMenu {
     CSDbDelegate db ;
+    
     public Register() {
-        super("Register");
         initComponents();
     }
     
@@ -321,8 +321,7 @@ public class Register extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
         // go back to login page
-        Login log = new Login();
-        log.setVisible(true);
+        createNewLogin();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void postcodetxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postcodetxtActionPerformed

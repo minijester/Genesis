@@ -14,18 +14,29 @@ import javax.swing.JOptionPane;
  *
  * @author Sae
  */
-public class BookSearching extends javax.swing.JFrame {
+public class BookSearching extends SuperMenu {
 
     CSDbDelegate db ;
-    String status;
-    String id;
     
     public BookSearching(String id,String status) {
-        super("Book Searching");
         this.status = status;
         this.id = id;
         initComponents();
         jPanel1.setVisible(false);
+    }
+    
+    public boolean isISBN(){
+        boolean keyinputisint = false;
+        int isbn;
+        try {
+            isbn = Integer.parseInt(keysearch.getText());
+            keyinputisint = true;
+            }   catch (NumberFormatException e) {  
+                }
+        //if(!keysearch.getText().isEmpty()) && keysearch.getText().equalsInteger.parseInt(keysearch.getText(){
+        //keyinput = true;
+        //}
+        return keyinputisint;
     }
 
     /**
@@ -168,13 +179,11 @@ public class BookSearching extends javax.swing.JFrame {
 
     private void mainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainActionPerformed
         dispose();
-        if(status == "Member"){
-            MainMenu mainmem = new MainMenu(id,status);
-            mainmem.setVisible(true);
+        if(status.equals("Member")){
+            createMenuMember(status, id);
         }
         else{
-            MainMenuAdmin mainad = new MainMenuAdmin(id,status);
-            mainad.setVisible(true);
+            createMenuAdmin(status, id);
         }
     }//GEN-LAST:event_mainActionPerformed
 
@@ -263,22 +272,6 @@ public class BookSearching extends javax.swing.JFrame {
         jPanel1.setVisible(false);
     }//GEN-LAST:event_clearActionPerformed
     
-    public boolean isISBN(){
-        boolean keyinputisint = false;
-        int isbn;
-        try {
-            isbn = Integer.parseInt(keysearch.getText());
-            keyinputisint = true;
-            }   catch (NumberFormatException e) {  
-                }
-        //if(!keysearch.getText().isEmpty()) && keysearch.getText().equalsInteger.parseInt(keysearch.getText(){
-        //keyinput = true;
-        //}
-        return keyinputisint;
-    }
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel booksearch;

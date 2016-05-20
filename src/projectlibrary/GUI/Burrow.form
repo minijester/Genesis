@@ -46,7 +46,10 @@
                           <Component id="date" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                      <Component id="isbntxt" min="-2" pref="266" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="isbntxt" min="-2" pref="266" max="-2" attributes="0"/>
+                          <Component id="datepick" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -85,8 +88,11 @@
                   <Component id="isbntxt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-              <Component id="date" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="46" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="date" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="datepick" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="43" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="burrow" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cancel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -181,6 +187,8 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Date : "/>
       </Properties>
+    </Component>
+    <Component class="org.jdesktop.swingx.JXDatePicker" name="datepick">
     </Component>
   </SubComponents>
 </Form>
