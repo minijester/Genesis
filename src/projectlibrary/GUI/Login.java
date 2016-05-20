@@ -23,7 +23,7 @@ import javax.swing.JTextField;
  *
  * @author Sae
  */
-public class Login extends JFrame {
+public class Login extends SuperMenu {
     JButton blogin; // login button
     JPanel loginpanel; 
     JTextField txuser; // id textfield
@@ -38,7 +38,6 @@ public class Login extends JFrame {
     String id;
     
     public Login(){ // constructor
-        super("Login Autentification");
         blogin = new JButton("Login");
         loginpanel = new JPanel();
         txuser = new JTextField(15);
