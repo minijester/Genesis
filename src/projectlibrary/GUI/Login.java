@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import projectlibrary.database.dbLogin;
 
 /**
  *
@@ -34,6 +35,7 @@ public class Login extends SuperMenu {
     CSDbDelegate db ;
     Session session;
     boolean login;
+    dbLogin log = new dbLogin();
     
     public Login(){ // constructor
         
@@ -78,9 +80,11 @@ public class Login extends SuperMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String str = String.valueOf(pass.getPassword());
-                checkInput(txuser.getText(),str);
+                doLogin(txuser.getText(), str);
+                /**checkInput(txuser.getText(),str);
                 System.out.println(str);
                 if(login == true){
+                    ArrayList<HashMap> list2 = log.checkID(txuser.getText());
                     String sta = "SELECT * FROM LibrayAccount where ID = '"+ txuser.getText()+ "'";
                     System.out.println(sta);
                     ArrayList<HashMap> list2 = db.queryRows(sta);
@@ -92,7 +96,7 @@ public class Login extends SuperMenu {
                             status = "Member";
                             id = txuser.getText();
                             JOptionPane.showMessageDialog(rootPane, "Login successfully"); 
-                            db.disconnect();
+                            dbLogin.disconnect();
                             dispose();
                             MainMenu menu = new MainMenu(id,status);
                             menu.setVisible(true);
@@ -102,7 +106,7 @@ public class Login extends SuperMenu {
                                 status = "Admin";
                                 id = txuser.getText();
                                 JOptionPane.showMessageDialog(rootPane, "Login successfully"); 
-                                db.disconnect();
+                                dbLogin.dbConnect();
                                 dispose();
                                 MainMenuAdmin menu = new MainMenuAdmin(id,status);
                                 menu.setVisible(true);
@@ -111,7 +115,7 @@ public class Login extends SuperMenu {
                 }
                 else{
                     JOptionPane.showMessageDialog(rootPane, checkInput(txuser.getText(),str)); 
-                }
+                }*/
             }
         });
         register.addActionListener(new ActionListener() {
@@ -126,6 +130,43 @@ public class Login extends SuperMenu {
             }
         });
         this.setResizable(false);
+    }
+    
+    public void doLogin(String id,String pass){
+        checkInput(id,pass);
+        if(login == true){
+                    ArrayList<HashMap> list2 = log.checkID(id);
+                    /**String sta = "SELECT * FROM LibrayAccount where ID = '"+ txuser.getText()+ "'";
+                    System.out.println(sta);
+                    ArrayList<HashMap> list2 = db.queryRows(sta);
+                    System.out.println(list2);
+                    boolean delSuccess = db.executeQuery(sta);
+                    System.out.println(delSuccess); */
+                    for(HashMap l : list2){
+                        if(l.get("Status").equals("Member")){
+                            status = "Member";
+                            id = txuser.getText();
+                            JOptionPane.showMessageDialog(rootPane, "Login successfully"); 
+                            dbLogin.disconnect();
+                            dispose();
+                            MainMenu menu = new MainMenu(id,status);
+                            menu.setVisible(true);
+                            break;
+                            }
+                            else{ // Admin main menu
+                                status = "Admin";
+                                id = txuser.getText();
+                                JOptionPane.showMessageDialog(rootPane, "Login successfully"); 
+                                dbLogin.dbConnect();
+                                dispose();
+                                MainMenuAdmin menu = new MainMenuAdmin(id,status);
+                                menu.setVisible(true);
+                            } 
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(rootPane, checkInput(id,pass)); 
+                }
     }
  
     public boolean logInSucces(){

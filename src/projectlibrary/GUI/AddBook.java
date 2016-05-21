@@ -13,7 +13,7 @@ import projectlibrary.database.dbInsertBook;
 
 
 public class AddBook extends SuperMenu {
-
+    dbInsertBook insert = new dbInsertBook();
 
     public AddBook(String id,String status) {
         initComponents();
@@ -148,8 +148,8 @@ public class AddBook extends SuperMenu {
 
     
     public void insertBook(){
-        dbInsertBook insert = new dbInsertBook();
         insert.Insert(isbn.getText(), title.getText(), author.getText(), price.getText());
+        dbInsertBook.disconnect();
         /**String sql = "INSERT INTO LibraryBook (ISBN,Title,Authors,Prices,Status,BurrowBy,BurrowDate) VALUES("
                + isbn.getText() +",'"
                + title.getText() +"','"

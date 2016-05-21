@@ -12,12 +12,13 @@ import java.util.HashMap;
  *
  * @author Minijester
  */
-public class dbReturnBook extends ConnectDB {
+public class dbReturnBook extends ConnectDB implements CheckInterface{
     
     public dbReturnBook(){
         super();
     }
     
+    @Override
     public ArrayList<HashMap> checkID(String user){
         String sqlid = "SELECT * FROM LibrayAccount WHERE ID = '"+ user + "'";
         ArrayList<HashMap> list = db.queryRows(sqlid);
@@ -28,7 +29,8 @@ public class dbReturnBook extends ConnectDB {
         return list;
     }
     
-    public ArrayList<HashMap> checkBook(String isbn){
+    @Override
+    public ArrayList<HashMap> checkBookISBN(String isbn){
         String sqlbook = "SELECT * FROM LibraryBook WHERE ISBN = '"+ isbn+ "'";
         ArrayList<HashMap> list2 = db.queryRows(sqlbook);
         System.out.println(list2);

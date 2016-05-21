@@ -260,7 +260,7 @@ public class ReturnSystem extends SuperMenu {
                         System.out.println(list2);
                         boolean delSuccess2 = db.executeQuery(bb);
                         System.out.println(delSuccess2);*/
-                        ArrayList<HashMap> list2 = dbreturn.checkBook(isbntxt.getText());
+                        ArrayList<HashMap> list2 = dbreturn.checkBookISBN(isbntxt.getText());
                         if(list2.isEmpty()){ // Check that this book is belong to our library.
                             JOptionPane.showMessageDialog(rootPane, "Sorry, don't have this book in system");
                         }
@@ -342,8 +342,7 @@ public class ReturnSystem extends SuperMenu {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
-        MainMenuAdmin mainad = new MainMenuAdmin(id,status);
-        mainad.setVisible(true);
+        createMenuAdmin(status, id);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

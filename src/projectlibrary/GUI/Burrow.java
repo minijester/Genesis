@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+import projectlibrary.database.dbBurrow;
 
 /**
  *
@@ -18,13 +19,113 @@ import javax.swing.JOptionPane;
  */
 public class Burrow extends SuperMenu {
 
-    CSDbDelegate db ;
+    dbBurrow burr = new dbBurrow();
 
     
     public Burrow(String id,String status) {
         this.status = status;
         this.id = id;
         initComponents();
+    }
+    
+    public void burrowBook(){
+        DateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+        String datebu = formater.format(datepick.getDate());
+        if(!usertxt.getText().isEmpty() && !booknametxt.getText().isEmpty() && !isbntxt.getText().isEmpty()){
+            CSDbDelegate db = new CSDbDelegate("cs14sitkmutt.me","3306","CSC105_G1","CSC105_G1","CSC105_G1");
+            db.connect();
+            // check id
+            ArrayList<HashMap> list = burr.checkID(usertxt.getText());
+            /**String sql = "SELECT * FROM LibrayAccount WHERE ID = '"+ usertxt.getText()+ "'";
+            System.out.println(sql);
+            ArrayList<HashMap> list = db.queryRows(sql);
+            System.out.println(list);
+            boolean delSuccess = db.executeQuery(sql);
+            System.out.println(delSuccess);*/
+            
+            if(list.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "Sorry, don't have this ID in system");
+                }
+            else{
+                for(HashMap l : list){
+                    System.out.println(l.get("BookInLoan"));
+                    if(l.get("BookInLoan").equals(" No")){
+                        
+                        // check bookname
+                        ArrayList<HashMap> list2 = burr.checkBookName(booknametxt.getText());
+                        /**String bb = "SELECT * FROM LibraryBook WHERE Title = '"+ booknametxt.getText()+ "'";
+                        System.out.println(bb);
+                        ArrayList<HashMap> list2 = db.queryRows(bb);
+                        System.out.println(list2);
+                        boolean delSuccess2 = db.executeQuery(bb);
+                        System.out.println(delSuccess2);*/
+                        if(list.isEmpty()){ // don't found book name
+                            JOptionPane.showMessageDialog(rootPane, "Sorry, don't have this book in system");
+                        }
+                        else{
+                            for(HashMap l2 : list2){
+                                if(l2.get("ISBN").equals(isbntxt.getText())){
+                                    //check isbn
+                                    ArrayList<HashMap>list3 = burr.checkBookISBN(isbntxt.getText());
+                                    /**String isb = "SELECT * FROM LibraryBook WHERE ISBN = '"+ isbntxt.getText()+ "'";
+                                    System.out.println(isb);
+                                    ArrayList<HashMap> list3 = db.queryRows(isb);
+                                    System.out.println(list3);
+                                    boolean delSuccess3 = db.executeQuery(isb);
+                                    System.out.println(delSuccess3);*/
+                                    if(list.isEmpty()){//don't found this isbn
+                                        JOptionPane.showMessageDialog(rootPane, "Sorry, don't have this book in system");
+                                        break;
+                                    }  
+                                    else{
+                                        for(HashMap l3 : list3){
+                                            //check status book
+                                            if(l3.get("Status").equals("Available")){
+                                                burr.UpdateBook(isbntxt.getText(), usertxt.getText(), datebu, booknametxt.getText());
+                                                
+                                                /** update status book
+                                                String update = "UPDATE LibraryBook SET Status = '"+ "Loaned" +"'WHERE ISBN = '"+isbntxt.getText() +"'";
+                                                System.out.println(update);
+                                                boolean delSuccess4 = db.executeQuery(update);
+                                                System.out.println(delSuccess4);
+                                                //update burrow date
+                                                String updateday = "UPDATE LibraryBook SET BurrowDate = '"+x+"'WHERE ISBN = '"+isbntxt.getText() +"'";
+                                                System.out.println(updateday);
+                                                Boolean delSucces5 = db.executeQuery(updateday);
+                                                System.out.println(delSucces5);
+                                                //update burrow by
+                                                String updateby = "UPDATE LibraryBook SET BurrowBy = '"+usertxt.getText()+"' WHERE ISBN = '"+isbntxt.getText() +"'";
+                                                System.out.println(updateby);
+                                                Boolean delSucces6 = db.executeQuery(updateby);
+                                                System.out.println(delSucces6);
+                                                //update book in loan (user)
+                                                String updateinloan = "UPDATE LibrayAccount SET BookInLoan = '"+booknametxt.getText()+"'WHERE ID = '"+ usertxt.getText() + "'";
+                                                System.out.println(updateinloan);
+                                                Boolean delSucces7 = db.executeQuery(updateinloan);
+                                                System.out.println(delSucces7);*/
+          
+                                                JOptionPane.showMessageDialog(rootPane, "Burrow finished !");
+                                                break;
+                                            }
+                                            else{
+                                                    JOptionPane.showMessageDialog(rootPane, "This book already in loadned");
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                }
+                            }
+                        }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(rootPane, "You have already burrow the book, please return it before burrow new book");
+                    }
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Please insert all of the data in the box");
+        }
     }
  
 
@@ -156,98 +257,7 @@ public class Burrow extends SuperMenu {
     }// </editor-fold>//GEN-END:initComponents
 
     private void burrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_burrowActionPerformed
-        DateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
-        String x = formater.format(datepick.getDate());
-        if(!usertxt.getText().isEmpty() && !booknametxt.getText().isEmpty() && !isbntxt.getText().isEmpty()){
-            CSDbDelegate db = new CSDbDelegate("cs14sitkmutt.me","3306","CSC105_G1","CSC105_G1","CSC105_G1");
-            db.connect();
-            // check id
-            String sql = "SELECT * FROM LibrayAccount WHERE ID = '"+ usertxt.getText()+ "'";
-            System.out.println(sql);
-            ArrayList<HashMap> list = db.queryRows(sql);
-            System.out.println(list);
-            boolean delSuccess = db.executeQuery(sql);
-            System.out.println(delSuccess);
-            
-            if(list.isEmpty()){
-                    JOptionPane.showMessageDialog(rootPane, "Sorry, don't have this ID in system");
-                }
-            else{
-                for(HashMap l : list){
-                    System.out.println(l.get("BookInLoan"));
-                    if(l.get("BookInLoan").equals(" No")){
-                        
-                        // check bookname
-                        String bb = "SELECT * FROM LibraryBook WHERE Title = '"+ booknametxt.getText()+ "'";
-                        System.out.println(bb);
-                        ArrayList<HashMap> list2 = db.queryRows(bb);
-                        System.out.println(list2);
-                        boolean delSuccess2 = db.executeQuery(bb);
-                        System.out.println(delSuccess2);
-                        if(list.isEmpty()){ // don't found book name
-                            JOptionPane.showMessageDialog(rootPane, "Sorry, don't have this book in system");
-                        }
-                        else{
-                            for(HashMap l2 : list2){
-                                if(l2.get("ISBN").equals(isbntxt.getText())){
-                                    //check isbn
-                                    String isb = "SELECT * FROM LibraryBook WHERE ISBN = '"+ isbntxt.getText()+ "'";
-                                    System.out.println(isb);
-                                    ArrayList<HashMap> list3 = db.queryRows(isb);
-                                    System.out.println(list3);
-                                    boolean delSuccess3 = db.executeQuery(isb);
-                                    System.out.println(delSuccess3);
-                                    if(list.isEmpty()){//don't found this isbn
-                                        JOptionPane.showMessageDialog(rootPane, "Sorry, don't have this book in system");
-                                        break;
-                                    }  
-                                    else{
-                                        for(HashMap l3 : list3){
-                                            //check status book
-                                            if(l3.get("Status").equals("Available")){
-                                                // update status book
-                                                String update = "UPDATE LibraryBook SET Status = '"+ "Loaned" +"'WHERE ISBN = '"+isbntxt.getText() +"'";
-                                                System.out.println(update);
-                                                boolean delSuccess4 = db.executeQuery(update);
-                                                System.out.println(delSuccess4);
-                                                //update burrow date
-                                                String updateday = "UPDATE LibraryBook SET BurrowDate = '"+x+"'WHERE ISBN = '"+isbntxt.getText() +"'";
-                                                System.out.println(updateday);
-                                                Boolean delSucces5 = db.executeQuery(updateday);
-                                                System.out.println(delSucces5);
-                                                //update burrow by
-                                                String updateby = "UPDATE LibraryBook SET BurrowBy = '"+usertxt.getText()+"' WHERE ISBN = '"+isbntxt.getText() +"'";
-                                                System.out.println(updateby);
-                                                Boolean delSucces6 = db.executeQuery(updateby);
-                                                System.out.println(delSucces6);
-                                                //update book in loan (user)
-                                                String updateinloan = "UPDATE LibrayAccount SET BookInLoan = '"+booknametxt.getText()+"'WHERE ID = '"+ usertxt.getText() + "'";
-                                                System.out.println(updateinloan);
-                                                Boolean delSucces7 = db.executeQuery(updateinloan);
-                                                System.out.println(delSucces7);
-          
-                                                JOptionPane.showMessageDialog(rootPane, "Burrow finished !");
-                                                break;
-                                            }
-                                            else{
-                                                    JOptionPane.showMessageDialog(rootPane, "This book already in loadned");
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                }
-                            }
-                        }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(rootPane, "You have already burrow the book, please return it before burrow new book");
-                    }
-                }
-            }
-        }
-        else{
-            JOptionPane.showMessageDialog(rootPane, "Please insert all of the data in the box");
-        }
+        burrowBook();
     }//GEN-LAST:event_burrowActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed

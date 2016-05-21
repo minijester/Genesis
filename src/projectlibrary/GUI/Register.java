@@ -7,16 +7,74 @@ package projectlibrary.GUI;
 
 import edu.sit.cs.db.CSDbDelegate;
 import javax.swing.JOptionPane;
+import projectlibrary.database.dbRegis;
 
 /**
  *
  * @author Sae
  */
 public class Register extends SuperMenu {
-    CSDbDelegate db ;
+    dbRegis regis = new dbRegis();
     
     public Register() {
         initComponents();
+    }
+    
+    public void doRegis(){
+        boolean goregis = true;
+        if (idtxt.getText().length() > 12 || idtxt.getText().length() < 4){
+            JOptionPane.showMessageDialog(rootPane, "ID must be 4 - 12 characters");
+            goregis = false;
+        }
+        if (passtxt.getPassword().length > 12 || passtxt.getPassword().length < 4){
+            JOptionPane.showMessageDialog(rootPane, "Password must be 4 - 12 characters");
+            goregis = false;
+        }
+
+        if ( goregis == true){
+            String str = String.valueOf(passtxt.getPassword());
+            regis.regis(idtxt.getText(), str, nametxt.getText(), surtxt.getText(), date.getSelectedItem(), month.getSelectedItem(),
+                    year.getSelectedItem(), housedatetxt.getText(), villagetxt.getText(), streettxt.getText(), subdistricttxt.getText(),
+                    districttxt.getText(), provincetxt.getText(), postcodetxt.getText(), phonenumtxt.getText());
+            /** SQL Insert
+            String str = String.valueOf(passtxt.getPassword());
+            String sql = "INSERT INTO LibrayAccount "
+                    + "(Status,ID,Pass,Name,Surname,DateOfBirth,MonthBirth,YearBirth,HouseDate,Village,Street,SubDistrict,District,Province,PostCode,PhoneNum,BookInLoan)"
+                    + "VALUES ('" + "Member" + "','"
+                    + idtxt.getText() + "','"
+                    + str + "','"
+                    + nametxt.getText() + "','"
+                    + surtxt.getText() + "','"
+                    + date.getSelectedItem() + "','"
+                    + month.getSelectedItem()+ "','"
+                    + year.getSelectedItem() + "','"
+                    + housedatetxt.getText() + "','"
+                    + villagetxt.getText() + "','"
+                    + streettxt.getText() + "','"
+                    + subdistricttxt.getText() + "','"
+                    + districttxt.getText() + "','"
+                    + provincetxt.getText() + "','"
+                    + postcodetxt.getText() + "','"
+                    + phonenumtxt.getText() + "',' "
+                    + "No" + "') ";
+            System.out.println(sql);
+            con.executeQuery(sql);
+            
+            String back = "INSERT INTO LibraryBacklog "
+                    + "(ID,ISBN,BookName,BurrowDate,ReturnDate)"
+                    + "VALUES ('" + idtxt.getText() + "','"
+                    + 0 + "','"
+                    + "/" + "','"
+                    + "/" + "','"
+                    + "/" + "') ";
+            System.out.println(back);
+            con.executeQuery(back);
+            
+            con.disconnect();*/
+            JOptionPane.showMessageDialog(rootPane, "Register successfully");
+            dispose();
+            createNewLogin();
+        }
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -263,9 +321,9 @@ public class Register extends SuperMenu {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        CSDbDelegate con = new CSDbDelegate("cs14sitkmutt.me","3306","CSC105_G1","CSC105_G1","CSC105_G1");
-        con.connect();
-        boolean goregis = true;
+        doRegis();
+        
+        /**boolean goregis = true;
         if (idtxt.getText().length() > 12 || idtxt.getText().length() < 4){
             JOptionPane.showMessageDialog(rootPane, "ID must be 4 - 12 characters");
             goregis = false;
@@ -276,7 +334,11 @@ public class Register extends SuperMenu {
         }
 
         if ( goregis == true){
-            // SQL Insert
+            String str = String.valueOf(passtxt.getPassword());
+            regis.regis(idtxt.getText(), str, nametxt.getText(), surtxt.getText(), date.getSelectedItem(), month.getSelectedItem(),
+                    year.getSelectedItem(), housedatetxt.getText(), villagetxt.getText(), streettxt.getText(), subdistricttxt.getText(),
+                    districttxt.getText(), provincetxt.getText(), postcodetxt.getText(), phonenumtxt.getText());
+             SQL Insert
             String str = String.valueOf(passtxt.getPassword());
             String sql = "INSERT INTO LibrayAccount "
                     + "(Status,ID,Pass,Name,Surname,DateOfBirth,MonthBirth,YearBirth,HouseDate,Village,Street,SubDistrict,District,Province,PostCode,PhoneNum,BookInLoan)"
@@ -313,9 +375,8 @@ public class Register extends SuperMenu {
             con.disconnect();
             JOptionPane.showMessageDialog(rootPane, "Register successfully");
             dispose();
-            Login log = new Login();
-            log.setVisible(true);
-        }
+            createNewLogin();
+        }*/
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

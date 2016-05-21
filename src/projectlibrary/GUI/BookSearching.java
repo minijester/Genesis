@@ -5,12 +5,11 @@
  */
 package projectlibrary.GUI;
 
-import edu.sit.cs.db.CSDbDelegate;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import projectlibrary.database.dbBookSearching;
 
 /**
@@ -19,6 +18,7 @@ import projectlibrary.database.dbBookSearching;
  */
 public class BookSearching extends SuperMenu {
     DefaultTableModel dm;
+    dbBookSearching bs = new dbBookSearching();
     
     public BookSearching(String id,String status) {
         this.status = status;
@@ -39,11 +39,7 @@ public class BookSearching extends SuperMenu {
         String[] rowdata = {isbn,bookname,author};
         dm.addRow(rowdata);  
     }
-    
-    private void filter(String query){
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dm);
-        table.setRowSorter(tr);
-    }
+
     
     public boolean isISBN(){
         boolean keyinputisint = false;
@@ -66,7 +62,6 @@ public class BookSearching extends SuperMenu {
     }
     
     public void search(){
-        dbBookSearching bs = new dbBookSearching();
         
         if(keysearch.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane,"Please insert key in the box");
@@ -297,9 +292,8 @@ public class BookSearching extends SuperMenu {
     }//GEN-LAST:event_mainActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        
-        
-        
+        search();
+        /**
         CSDbDelegate db = new CSDbDelegate("cs14sitkmutt.me","3306","CSC105_G1","CSC105_G1","CSC105_G1");
         db.connect();
         // check if input is int so it will be only ISBN
@@ -366,7 +360,7 @@ public class BookSearching extends SuperMenu {
                 }
             db.disconnect();
             }
-        }
+        }*/
     }//GEN-LAST:event_searchActionPerformed
 
     private void keysearchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keysearchMousePressed

@@ -8,25 +8,48 @@ package projectlibrary.GUI;
 import edu.sit.cs.db.CSDbDelegate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import projectlibrary.database.dbUserInfo;
 
 /**
  *
  * @author user
  */
 public class Information extends SuperMenu {
-
+    
+    dbUserInfo userin = new dbUserInfo();
 
     public Information(String id,String status) {
         
         this.id = id;
         this.status = status;
         initComponents();
-        CSDbDelegate con = new CSDbDelegate("cs14sitkmutt.me","3306","CSC105_G1","CSC105_G1","CSC105_G1");
+        insertInfo(id);
+        /**CSDbDelegate con = new CSDbDelegate("cs14sitkmutt.me","3306","CSC105_G1","CSC105_G1","CSC105_G1");
         con.connect();
         String sql = "SELECT * FROM LibrayAccount WHERE ID = '"+ id + "'";
         ArrayList<HashMap> list = con.queryRows(sql);
         boolean delSuccess = con.executeQuery(sql);
         for(HashMap l : list){
+            if(l.get("ID").equals(id)){
+                idtxt.setText("ID : " + l.get("ID")) ;
+                nametxt.setText("Name : " + l.get("Name"));
+                surname.setText("Surname : " + l.get("Surname"));
+                birthday.setText("Birthday : " + l.get("DateOfBirth") + "/" + l.get("MonthBirth") + "/" + l.get("YearBirth"));
+                house.setText("House no : " + l.get("HouseDate"));
+                village.setText("Village : " + l.get("Village"));
+                st.setText("Street : " + l.get("Street"));
+                sd.setText("Sub district : " + l.get("Subdistrict"));
+                dis.setText("District : " + l.get("District"));
+                prov.setText("Province : " + l.get("Province"));
+                post.setText("Post Code : " + l.get("PostCode"));
+                phone.setText("Phone : " + l.get("PhoneNum")); 
+            }
+        }*/
+    }
+    
+    public void insertInfo(String id){
+        ArrayList<HashMap> listuser = userin.checkInfo(id);
+        for(HashMap l : listuser){
             if(l.get("ID").equals(id)){
                 idtxt.setText("ID : " + l.get("ID")) ;
                 nametxt.setText("Name : " + l.get("Name"));
