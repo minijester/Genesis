@@ -138,7 +138,7 @@ public class AddBook extends SuperMenu {
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
 
         dispose();
-        createMenuAdmin(status, id);
+        createMenu(status, id);
     }//GEN-LAST:event_cancelActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
@@ -196,4 +196,18 @@ public class AddBook extends SuperMenu {
     private javax.swing.JTextField price;
     private javax.swing.JTextField title;
     // End of variables declaration//GEN-END:variables
+
+ 
+    @Override
+    public void createMenu(String status, String id) {
+        if(status.equals("Member")){
+            MainMenu member = new MainMenu(id,status);
+            member.setVisible(true);
+        }
+        else{
+            MainMenuAdmin mainad = new MainMenuAdmin(id,status);
+            mainad.setVisible(true);
+        }
+    }
+
 }

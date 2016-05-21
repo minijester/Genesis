@@ -137,12 +137,7 @@ public class Backlog extends SuperMenu {
 
     private void mainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainActionPerformed
         dispose();
-        if(status.equals("Member")){
-            createMenuMember(status, id);
-        }
-        else{
-            createMenuAdmin(status, id);
-        }
+        createMenu(status, id);
     }//GEN-LAST:event_mainActionPerformed
 
     private void showActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showActionPerformed
@@ -174,4 +169,16 @@ public class Backlog extends SuperMenu {
     private javax.swing.JButton main;
     private javax.swing.JButton show;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void createMenu(String status, String id) {
+        if(status.equals("Member")){
+            MainMenu member = new MainMenu(id,status);
+            member.setVisible(true);
+        }
+        else{
+            MainMenuAdmin mainad = new MainMenuAdmin(id,status);
+            mainad.setVisible(true);
+        }
+    }
 }

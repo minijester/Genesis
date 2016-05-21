@@ -5,6 +5,8 @@
  */
 package projectlibrary.GUI;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Minijester
@@ -17,6 +19,8 @@ public class FirstPage extends SuperMenu {
     public FirstPage() {
         initComponents();
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,4 +109,9 @@ public class FirstPage extends SuperMenu {
     private javax.swing.JButton login;
     private javax.swing.JButton register;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void createMenu(String status, String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -27,6 +27,18 @@ public class ReturnSystem extends SuperMenu {
         initComponents();
     }
     
+    @Override
+    public void createMenu(String status, String id) {
+        if(status.equals("Member")){
+            MainMenu member = new MainMenu(id,status);
+            member.setVisible(true);
+        }
+        else{
+            MainMenuAdmin mainad = new MainMenuAdmin(id,status);
+            mainad.setVisible(true);
+        }
+    }
+    
     public void doReturn(){
         DateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
         String datereturn = formater.format(datepick.getDate());
@@ -458,7 +470,7 @@ public class ReturnSystem extends SuperMenu {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
-        createMenuAdmin(status, id);
+        createMenu(status, id);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

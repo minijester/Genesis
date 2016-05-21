@@ -28,6 +28,18 @@ public class Burrow extends SuperMenu {
         initComponents();
     }
     
+    @Override
+    public void createMenu(String status, String id) {
+        if(status.equals("Member")){
+            MainMenu member = new MainMenu(id,status);
+            member.setVisible(true);
+        }
+        else{
+            MainMenuAdmin mainad = new MainMenuAdmin(id,status);
+            mainad.setVisible(true);
+        }
+    }
+    
     public void burrowBook(){
         DateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
         String datebu = formater.format(datepick.getDate());
@@ -262,7 +274,7 @@ public class Burrow extends SuperMenu {
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         dispose();
-        createMenuAdmin(status, id);
+        createMenu(status, id);
         // go back to admin mainmenu
     }//GEN-LAST:event_cancelActionPerformed
 

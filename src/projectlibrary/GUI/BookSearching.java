@@ -28,6 +28,18 @@ public class BookSearching extends SuperMenu {
         createColumns();
     }
     
+    @Override
+    public void createMenu(String status, String id) {
+        if(status.equals("Member")){
+            MainMenu member = new MainMenu(id,status);
+            member.setVisible(true);
+        }
+        else{
+            MainMenuAdmin mainad = new MainMenuAdmin(id,status);
+            mainad.setVisible(true);
+        }
+    }
+    
     private void createColumns(){
         dm = (DefaultTableModel) table.getModel();
         dm.addColumn("ISBN");
@@ -283,12 +295,7 @@ public class BookSearching extends SuperMenu {
 
     private void mainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainActionPerformed
         dispose();
-        if(status.equals("Member")){
-            createMenuMember(status, id);
-        }
-        else{
-            createMenuAdmin(status, id);
-        }
+        createMenu(status, id);
     }//GEN-LAST:event_mainActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed

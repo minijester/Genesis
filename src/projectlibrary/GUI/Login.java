@@ -132,6 +132,18 @@ public class Login extends SuperMenu {
         this.setResizable(false);
     }
     
+    @Override
+    public void createMenu(String status, String id) {
+        if(status.equals("Member")){
+            MainMenu member = new MainMenu(id,status);
+            member.setVisible(true);
+        }
+        else{
+            MainMenuAdmin mainad = new MainMenuAdmin(id,status);
+            mainad.setVisible(true);
+        }
+    }
+    
     public void doLogin(String id,String pass){
         checkInput(id,pass);
         if(login == true){
@@ -149,8 +161,7 @@ public class Login extends SuperMenu {
                             JOptionPane.showMessageDialog(rootPane, "Login successfully"); 
                             dbLogin.disconnect();
                             dispose();
-                            MainMenu menu = new MainMenu(id,status);
-                            menu.setVisible(true);
+                            createMenu(status, id);
                             break;
                             }
                             else{ // Admin main menu
@@ -159,8 +170,7 @@ public class Login extends SuperMenu {
                                 JOptionPane.showMessageDialog(rootPane, "Login successfully"); 
                                 dbLogin.dbConnect();
                                 dispose();
-                                MainMenuAdmin menu = new MainMenuAdmin(id,status);
-                                menu.setVisible(true);
+                                createMenu(status, id);
                             } 
                     }
                 }

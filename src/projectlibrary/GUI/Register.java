@@ -157,12 +157,6 @@ public class Register extends SuperMenu {
         phonenum.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         phonenum.setText("PhoneNumber : ");
 
-        postcodetxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                postcodetxtActionPerformed(evt);
-            }
-        });
-
         jButton1.setText("Cancel");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -385,10 +379,6 @@ public class Register extends SuperMenu {
         createNewLogin();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void postcodetxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postcodetxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_postcodetxtActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel birth;
     private javax.swing.JComboBox date;
@@ -422,4 +412,9 @@ public class Register extends SuperMenu {
     private javax.swing.JTextField villagetxt;
     private javax.swing.JComboBox year;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void createMenu(String status, String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

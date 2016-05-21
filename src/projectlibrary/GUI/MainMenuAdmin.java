@@ -17,7 +17,8 @@ public class MainMenuAdmin extends SuperMenu {
         this.id = id;
         initComponents();
     }
-
+  
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -193,4 +194,9 @@ public class MainMenuAdmin extends SuperMenu {
     private javax.swing.JButton logout;
     private javax.swing.JButton returnsys;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void createMenu(String status, String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

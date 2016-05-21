@@ -20,6 +20,8 @@ public class MainMenu extends SuperMenu {
         this.status = status;
         this.id = id;
     }
+    
+ 
 
 
     /**
@@ -148,4 +150,9 @@ public class MainMenu extends SuperMenu {
     private javax.swing.JButton logout;
     private javax.swing.JButton search;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void createMenu(String status, String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

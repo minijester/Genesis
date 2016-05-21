@@ -47,6 +47,18 @@ public class Information extends SuperMenu {
         }*/
     }
     
+    @Override
+    public void createMenu(String status, String id) {
+        if(status.equals("Member")){
+            MainMenu member = new MainMenu(id,status);
+            member.setVisible(true);
+        }
+        else{
+            MainMenuAdmin mainad = new MainMenuAdmin(id,status);
+            mainad.setVisible(true);
+        }
+    }
+    
     public void insertInfo(String id){
         ArrayList<HashMap> listuser = userin.checkInfo(id);
         for(HashMap l : listuser){
@@ -217,12 +229,7 @@ public class Information extends SuperMenu {
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         dispose();
-        if(status == "Member"){
-            createMenuMember(status, id);
-        }
-        else{
-            createMenuAdmin(status, id);
-        }
+        createMenu(status, id);
     }//GEN-LAST:event_cancelActionPerformed
 
 

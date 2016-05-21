@@ -5,8 +5,7 @@
  */
 package projectlibrary.GUI;
 import javax.swing.JFrame;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
+
 
 /**
  *
@@ -47,7 +46,7 @@ public abstract class SuperMenu extends JFrame{
         c.setVisible(true);
     }
     
-    public void createMenuAdmin(String status,String id){
+    /**public void createMenuAdmin(String status,String id){
         MainMenuAdmin mainad = new MainMenuAdmin(id,status);
         mainad.setVisible(true);
     }
@@ -55,7 +54,7 @@ public abstract class SuperMenu extends JFrame{
     public void createMenuMember(String status,String id){
         MainMenu member = new MainMenu(id,status);
         member.setVisible(true);
-    }
+    }*/
     
     public void createNewLogin(){
         Login log = new Login();
@@ -66,6 +65,8 @@ public abstract class SuperMenu extends JFrame{
         Register regis = new Register();
         regis.setVisible(true);
     }
-    
-    
+     
+    public abstract void createMenu(String status,String id);
 }
+
+
