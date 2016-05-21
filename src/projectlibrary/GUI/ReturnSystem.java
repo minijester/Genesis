@@ -5,12 +5,12 @@
  */
 package projectlibrary.GUI;
 
-import edu.sit.cs.db.CSDbDelegate;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+import projectlibrary.database.dbBacklog;
 import projectlibrary.database.dbReturnBook;
 
 /**
@@ -18,12 +18,125 @@ import projectlibrary.database.dbReturnBook;
  * @author Sae
  */
 public class ReturnSystem extends SuperMenu {
-    CSDbDelegate db;
+    dbReturnBook dbreturn = new dbReturnBook();
+    dbBacklog back = new dbBacklog();
     
     public ReturnSystem(String id,String status) {
         this.status = status;
         this.id = id;
         initComponents();
+    }
+    
+    public void doReturn(){
+        DateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+        String datereturn = formater.format(datepick.getDate());
+        int returndate = getdate(datereturn);
+
+        if(!usertxt.getText().isEmpty() && !isbntxt.getText().isEmpty()){
+            /**db = new CSDbDelegate("cs14sitkmutt.me","3306","CSC105_G1","CSC105_G1","CSC105_G1");
+            db.connect();
+            String sql = "SELECT * FROM LibrayAccount WHERE ID = '"+ usertxt.getText()+ "'";
+            System.out.println(sql);
+            ArrayList<HashMap> list = db.queryRows(sql);
+            System.out.println(list);
+            boolean delSuccess = db.executeQuery(sql);
+            System.out.println(delSuccess);*/
+            
+            ArrayList<HashMap> list = dbreturn.checkID(usertxt.getText());
+            
+            //check ID
+            if(list.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "Sorry, don't have this ID in system");
+            }
+            //found ID --> go check the loaned book from this ID.
+            else{
+                for(HashMap l : list){
+                    if(l.get("ID").equals(usertxt.getText())){
+                        /**String bb = "SELECT * FROM LibraryBook WHERE ISBN = '"+ isbntxt.getText()+ "'";
+                        System.out.println(bb);
+                        ArrayList<HashMap> list2 = db.queryRows(bb);
+                        System.out.println(list2);
+                        boolean delSuccess2 = db.executeQuery(bb);
+                        System.out.println(delSuccess2);*/
+                        ArrayList<HashMap> list2 = dbreturn.checkBookISBN(isbntxt.getText());
+                        if(list2.isEmpty()){ // Check that this book is belong to our library.
+                            JOptionPane.showMessageDialog(rootPane, "Sorry, don't have this book in system");
+                        }
+                        // found book then
+                        else{
+                            for(HashMap l2 : list2){
+                                //check id burrow this book
+                                if(l.get("ID").equals(l2.get("BurrowBy"))){
+                                //check user status
+                                    if(l2.get("Status").equals("Loaned")){
+                                        dbreturn.updateBook(isbntxt.getText(),usertxt.getText());
+                                        // update book status
+                                        /**String update = "UPDATE LibraryBook SET Status = '"+ "Available" +"'WHERE ISBN = '"+isbntxt.getText() +"'";
+                                        System.out.println(update);
+                                        boolean delSuccess4 = db.executeQuery(update);
+                                        System.out.println(delSuccess4);*/
+                                        //get burrowdate
+                                        String dateburr = l2.get("BurrowDate").toString();                                     
+                                        int burrowdate = getdate(dateburr);
+                                        
+                                        int penal = computePenalty(returndate,burrowdate);
+
+                                        //update book burrowdate
+                                        /**String updateday = "UPDATE LibraryBook SET BurrowDate = '"+ "No" +"'WHERE ISBN = '"+isbntxt.getText()+"'";
+                                        System.out.println(updateday);
+                                        Boolean delSucces5 = db.executeQuery(updateday);
+                                        System.out.println(delSucces5);*/
+                                        //update book burrow by ...
+                                        /**String updateby = "UPDATE LibraryBook SET BurrowBy = '"+ "No" +"'WHERE ISBN = '"+isbntxt.getText() +"'";
+                                        System.out.println(updateby);
+                                        Boolean delSucces6 = db.executeQuery(updateby);
+                                        System.out.println(delSucces6);
+                                        String updateinloan = "UPDATE LibrayAccount SET BookInLoan = '"+ " No" +"'WHERE ID = '"+usertxt.getText() +"'";
+                                        System.out.println(updateinloan);
+                                        Boolean delSucces7 = db.executeQuery(updateinloan);
+                                        System.out.println(delSucces7);*/
+
+                                        //SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+                                        //String date = formater.format(datepick.getDate());
+                                        //System.out.println(date);
+                                        if(penal > 0){
+                                            JOptionPane.showMessageDialog(rootPane, "You return late !");
+                                            penalty.setText("Penalty : " + penal);
+                                        }
+                                        back.updateBacklog(usertxt.getText(), datereturn, isbntxt.getText(), dateburr,l2.get("Title").toString());
+                                        /**String updateback = "UPDATE LibraryBacklog SET ReturnDate = '"+ datereturn +"'WHERE ID = '"+usertxt.getText() +"'";
+                                        System.out.println(updateback);
+                                        Boolean delSucces8 = db.executeQuery(updateback);
+                                        System.out.println(delSucces8);
+
+                                        String updatebackisbn = "UPDATE LibraryBacklog SET ISBN = '"+isbntxt.getText()+"'WHERE ID = '"+ usertxt.getText() + "'";
+                                        System.out.println(updatebackisbn);
+                                        Boolean delSucces4 = db.executeQuery(updatebackisbn);
+                                        System.out.println(delSucces4);
+
+                                        String updatebackbur = "UPDATE LibraryBacklog SET BurrowDate = '"+dateburr+"'WHERE ID = '"+ usertxt.getText() + "'";
+                                        System.out.println(updatebackbur);
+                                        Boolean delSucces9 = db.executeQuery(updatebackbur);
+                                        System.out.println(delSucces9);
+
+                                        //String book = l2.get("BookName").toString();
+                                        String updatebackre = "UPDATE LibraryBacklog SET BookName = '"+l2.get("Title").toString()+"'WHERE ID = '"+ usertxt.getText() + "'";
+                                        System.out.println(updatebackre);
+                                        Boolean delSucces10 = db.executeQuery(updatebackre);
+                                        System.out.println(delSucces10);*/
+                                        JOptionPane.showMessageDialog(rootPane, "Return finished !");
+                                        break;    
+                                    }
+                                }
+                                else{
+                                    JOptionPane.showConfirmDialog(rootPane, "This ID hasn't burrow any book");
+                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     public int computePenalty(int returnd, int burrow){
@@ -230,7 +343,9 @@ public class ReturnSystem extends SuperMenu {
     }// </editor-fold>//GEN-END:initComponents
 
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
-        DateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+        doReturn();
+        
+        /**DateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
         String datereturn = formater.format(datepick.getDate());
         int returndate = getdate(datereturn);
 
@@ -242,8 +357,8 @@ public class ReturnSystem extends SuperMenu {
             ArrayList<HashMap> list = db.queryRows(sql);
             System.out.println(list);
             boolean delSuccess = db.executeQuery(sql);
-            System.out.println(delSuccess);*/
-            dbReturnBook dbreturn = new dbReturnBook();
+            System.out.println(delSuccess);
+            
             ArrayList<HashMap> list = dbreturn.checkID(usertxt.getText());
             
             //check ID
@@ -259,7 +374,7 @@ public class ReturnSystem extends SuperMenu {
                         ArrayList<HashMap> list2 = db.queryRows(bb);
                         System.out.println(list2);
                         boolean delSuccess2 = db.executeQuery(bb);
-                        System.out.println(delSuccess2);*/
+                        System.out.println(delSuccess2);
                         ArrayList<HashMap> list2 = dbreturn.checkBookISBN(isbntxt.getText());
                         if(list2.isEmpty()){ // Check that this book is belong to our library.
                             JOptionPane.showMessageDialog(rootPane, "Sorry, don't have this book in system");
@@ -276,7 +391,7 @@ public class ReturnSystem extends SuperMenu {
                                         /**String update = "UPDATE LibraryBook SET Status = '"+ "Available" +"'WHERE ISBN = '"+isbntxt.getText() +"'";
                                         System.out.println(update);
                                         boolean delSuccess4 = db.executeQuery(update);
-                                        System.out.println(delSuccess4);*/
+                                        System.out.println(delSuccess4);
                                         //get burrowdate
                                         String dateburr = l2.get("BurrowDate").toString();                                     
                                         int burrowdate = getdate(dateburr);
@@ -296,7 +411,7 @@ public class ReturnSystem extends SuperMenu {
                                         String updateinloan = "UPDATE LibrayAccount SET BookInLoan = '"+ " No" +"'WHERE ID = '"+usertxt.getText() +"'";
                                         System.out.println(updateinloan);
                                         Boolean delSucces7 = db.executeQuery(updateinloan);
-                                        System.out.println(delSucces7);*/
+                                        System.out.println(delSucces7);
 
                                         //SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
                                         //String date = formater.format(datepick.getDate());
@@ -305,7 +420,8 @@ public class ReturnSystem extends SuperMenu {
                                             JOptionPane.showMessageDialog(rootPane, "You return late !");
                                             penalty.setText("Penalty : " + penal);
                                         }
-                                        String updateback = "UPDATE LibraryBacklog SET ReturnDate = '"+ datereturn +"'WHERE ID = '"+usertxt.getText() +"'";
+                                        back.updateBacklog(usertxt.getText(), datereturn, isbntxt.getText(), dateburr,l2.get("Title").toString());
+                                        /**String updateback = "UPDATE LibraryBacklog SET ReturnDate = '"+ datereturn +"'WHERE ID = '"+usertxt.getText() +"'";
                                         System.out.println(updateback);
                                         Boolean delSucces8 = db.executeQuery(updateback);
                                         System.out.println(delSucces8);
@@ -321,7 +437,7 @@ public class ReturnSystem extends SuperMenu {
                                         System.out.println(delSucces9);
 
                                         //String book = l2.get("BookName").toString();
-                                        String updatebackre = "UPDATE LibraryBacklog SET BookName = '"+l2.get("Title")+"'WHERE ID = '"+ usertxt.getText() + "'";
+                                        String updatebackre = "UPDATE LibraryBacklog SET BookName = '"+l2.get("Title").toString()+"'WHERE ID = '"+ usertxt.getText() + "'";
                                         System.out.println(updatebackre);
                                         Boolean delSucces10 = db.executeQuery(updatebackre);
                                         System.out.println(delSucces10);
@@ -337,7 +453,7 @@ public class ReturnSystem extends SuperMenu {
                     }
                 }
             }
-        }
+        }*/
     }//GEN-LAST:event_returnBtnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
