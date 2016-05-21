@@ -5,19 +5,20 @@
  */
 package projectlibrary.GUI;
 
-import edu.sit.cs.db.CSDbDelegate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import projectlibrary.database.dbBacklog;
 
 /**
  *
  * @author Sae
  */
 public class Backlog extends SuperMenu {
-
-    CSDbDelegate db ;
+    DefaultTableModel dm;
+    dbBacklog back = new dbBacklog();
+    
     public Backlog(String id,String status) {
 
         initComponents();
@@ -25,7 +26,19 @@ public class Backlog extends SuperMenu {
         this.id = id;
         jPanel1.setVisible(false);
     }
-
+    
+     private void createColumns(){
+        dm = (DefaultTableModel) backlogtable.getModel();
+        dm.addColumn("ISBN");
+        dm.addColumn("Book Name");
+        dm.addColumn("Burrow Date");
+        dm.addColumn("Return Date");
+    }
+    
+    private void poppulate(String isbn, String bookname, String burrowd, String returnd){
+        String[] rowdata = {isbn,bookname,burrowd,returnd};
+        dm.addRow(rowdata);  
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,21 +64,12 @@ public class Backlog extends SuperMenu {
 
         backlogtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Book Name", "ISBN", "Burrow Date", "Return Date"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-        });
+        ));
         jScrollPane1.setViewportView(backlogtable);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -94,7 +98,6 @@ public class Backlog extends SuperMenu {
         });
 
         show.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        show.setIcon(new javax.swing.ImageIcon(getClass().getResource("/notepad-icon.png"))); // NOI18N
         show.setText("Show Backlog");
         show.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +137,7 @@ public class Backlog extends SuperMenu {
 
     private void mainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainActionPerformed
         dispose();
-        if(status == "Member"){
+        if(status.equals("Member")){
             createMenuMember(status, id);
         }
         else{
@@ -143,28 +146,22 @@ public class Backlog extends SuperMenu {
     }//GEN-LAST:event_mainActionPerformed
 
     private void showActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showActionPerformed
-        System.out.println(id);
-        CSDbDelegate db = new CSDbDelegate("cs14sitkmutt.me","3306","CSC105_G1","CSC105_G1","CSC105_G1");
-        db.connect();
-        String sql = "SELECT * FROM LibraryBacklog WHERE ID = '"+ id+ "'";
-        System.out.println(sql);
-        ArrayList<HashMap> list = db.queryRows(sql);
-        System.out.println(list);
-        boolean delSuccess = db.executeQuery(sql);
-        System.out.println(delSuccess);
+        ArrayList<HashMap> list = back.checkID(id); 
+
         jPanel1.setVisible(true);
         if(list.isEmpty()){
             JOptionPane.showMessageDialog(rootPane, "Sorry, don't have this ID in system");
         }
         else{
             for(HashMap l : list){
-                backlogtable.setValueAt(l.get("BookName"), 0, 0);
+                poppulate(l.get("ISBN").toString(), l.get("Title").toString(), l.get("BurrowDate").toString(),l.get("ReturnDate").toString());
+                /**backlogtable.setValueAt(l.get("BookName"), 0, 0);
                 backlogtable.setValueAt(l.get("ISBN"), 0, 1);
                 backlogtable.setValueAt(l.get("BurrowDate"), 0, 2);
-                backlogtable.setValueAt(l.get("ReturnDate"), 0, 3);        
+                backlogtable.setValueAt(l.get("ReturnDate"), 0, 3);     */   
             }
         }
-        db.disconnect();
+        dbBacklog.disconnect();
     }//GEN-LAST:event_showActionPerformed
 
     
