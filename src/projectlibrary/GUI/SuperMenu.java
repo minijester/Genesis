@@ -5,14 +5,17 @@
  */
 package projectlibrary.GUI;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author Minijester
  */
-public class SuperMenu extends JFrame{
+public abstract class SuperMenu extends JFrame{
     String status;
     String id;
+    
     
     public void createAddbook(String status,String id){
         AddBook Add = new AddBook(id,status);
@@ -63,4 +66,6 @@ public class SuperMenu extends JFrame{
         Register regis = new Register();
         regis.setVisible(true);
     }
+    
+    
 }

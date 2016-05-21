@@ -34,10 +34,9 @@ public class Login extends SuperMenu {
     CSDbDelegate db ;
     Session session;
     boolean login;
-    String status;
-    String id;
     
     public Login(){ // constructor
+        
         blogin = new JButton("Login");
         loginpanel = new JPanel();
         txuser = new JTextField(15);

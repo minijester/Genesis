@@ -26,7 +26,7 @@ public class ReturnSystem extends SuperMenu {
         initComponents();
     }
     
-    public int penalty(int returnd, int burrow){
+    public int computePenalty(int returnd, int burrow){
         int penaltymoney = 0;
         int penal = returnd - burrow;
         
@@ -126,7 +126,7 @@ public class ReturnSystem extends SuperMenu {
         isbn = new javax.swing.JLabel();
         usertxt = new javax.swing.JTextField();
         isbntxt = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        returnBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         date = new javax.swing.JLabel();
         penalty = new javax.swing.JLabel();
@@ -149,11 +149,11 @@ public class ReturnSystem extends SuperMenu {
 
         isbntxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Return");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        returnBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        returnBtn.setText("Return");
+        returnBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                returnBtnActionPerformed(evt);
             }
         });
 
@@ -177,30 +177,29 @@ public class ReturnSystem extends SuperMenu {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(103, 103, 103)
-                .addComponent(jButton1)
+                .addComponent(returnBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(105, 105, 105))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(42, 42, 42)
-                            .addComponent(user))
-                        .addComponent(isbn, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(isbntxt, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(usertxt, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addComponent(returnsys)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(37, 37, 37)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(penalty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(date)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(datepick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(user))
+                    .addComponent(isbn, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(isbntxt, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usertxt, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(returnsys)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(penalty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(date)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(datepick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +221,7 @@ public class ReturnSystem extends SuperMenu {
                 .addComponent(penalty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(returnBtn)
                     .addComponent(jButton2))
                 .addGap(40, 40, 40))
         );
@@ -230,7 +229,7 @@ public class ReturnSystem extends SuperMenu {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
         DateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
         String datereturn = formater.format(datepick.getDate());
         int returndate = getdate(datereturn);
@@ -282,7 +281,7 @@ public class ReturnSystem extends SuperMenu {
                                         String dateburr = l2.get("BurrowDate").toString();                                     
                                         int burrowdate = getdate(dateburr);
                                         
-                                        int penal = penalty(returndate,burrowdate);
+                                        int penal = computePenalty(returndate,burrowdate);
 
                                         //update book burrowdate
                                         /**String updateday = "UPDATE LibraryBook SET BurrowDate = '"+ "No" +"'WHERE ISBN = '"+isbntxt.getText()+"'";
@@ -339,7 +338,7 @@ public class ReturnSystem extends SuperMenu {
                 }
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_returnBtnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
@@ -354,9 +353,9 @@ public class ReturnSystem extends SuperMenu {
     private org.jdesktop.swingx.JXDatePicker datepick;
     private javax.swing.JLabel isbn;
     private javax.swing.JTextField isbntxt;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel penalty;
+    private javax.swing.JButton returnBtn;
     private javax.swing.JLabel returnsys;
     private javax.swing.JLabel user;
     private javax.swing.JTextField usertxt;

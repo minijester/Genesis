@@ -9,20 +9,40 @@ import edu.sit.cs.db.CSDbDelegate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import projectlibrary.database.dbBookSearching;
 
 /**
  *
  * @author Sae
  */
 public class BookSearching extends SuperMenu {
-
-    CSDbDelegate db ;
+    DefaultTableModel dm;
     
     public BookSearching(String id,String status) {
         this.status = status;
         this.id = id;
         initComponents();
         jPanel1.setVisible(false);
+        createColumns();
+    }
+    
+    private void createColumns(){
+        dm = (DefaultTableModel) table.getModel();
+        dm.addColumn("ISBN");
+        dm.addColumn("Book Name");
+        dm.addColumn("Author");
+    }
+    
+    private void poppulate(String isbn, String bookname, String author){
+        String[] rowdata = {isbn,bookname,author};
+        dm.addRow(rowdata);  
+    }
+    
+    private void filter(String query){
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(dm);
+        table.setRowSorter(tr);
     }
     
     public boolean isISBN(){
@@ -38,6 +58,79 @@ public class BookSearching extends SuperMenu {
         //}
         return keyinputisint;
     }
+    
+    // check search option from combobox
+    public String checkOption(){
+        String option = selectSearchMethod.getSelectedItem().toString();
+        return option;
+    }
+    
+    public void search(){
+        dbBookSearching bs = new dbBookSearching();
+        
+        if(keysearch.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane,"Please insert key in the box");
+        }
+        else{
+            switch (checkOption()) {
+                case "ISBN":
+                    ArrayList<HashMap> listISBN = bs.searchISBN(keysearch.getText());
+                    
+                    if(listISBN.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "Sorry, we don't has this book in this Library");
+                    }
+                    else{
+                        for(HashMap l : listISBN){
+                            jPanel1.setVisible(true);
+                            if(l.get("ISBN").equals(keysearch.getText())){
+                                poppulate(l.get("ISBN").toString(), l.get("Title").toString(), l.get("Authors").toString());
+                                break;
+                            }
+                        }
+                    }
+                    
+                    break;
+                    
+                case "Book name":
+                    ArrayList<HashMap> listBookName = bs.searchBookName(keysearch.getText());
+                    if(listBookName.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "Sorry, we don't has this book in this Library");
+                    }
+                    else{
+                        for(HashMap l : listBookName){
+                            jPanel1.setVisible(true);
+                            if(l.get("Title").equals(keysearch.getText())){
+                                poppulate(l.get("ISBN").toString(), l.get("Title").toString(), l.get("Authors").toString());
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                    
+                default:
+                    ArrayList<HashMap> listAuthors = bs.searchAuthor(keysearch.getText());
+                    if(listAuthors.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "Sorry, we don't has this book in this Library");
+                    }
+                    else{
+                        for(HashMap l : listAuthors){
+                            jPanel1.setVisible(true);
+                            if(l.get("Authors").equals(keysearch.getText())){
+                                poppulate(l.get("ISBN").toString(), l.get("Title").toString(), l.get("Authors").toString());
+                                break;
+                            }
+                        }
+                    }
+                    
+                    break;
+            }
+        }
+        dbBookSearching.disconnect();
+    }
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +151,8 @@ public class BookSearching extends SuperMenu {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         clear = new javax.swing.JButton();
+        selectSearchMethod = new javax.swing.JComboBox<>();
+        searchBy = new javax.swing.JLabel();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -97,11 +192,10 @@ public class BookSearching extends SuperMenu {
         table.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Book Name", "ISBN", "Authors"
+
             }
         ));
         jScrollPane1.setViewportView(table);
@@ -138,6 +232,10 @@ public class BookSearching extends SuperMenu {
                 .addContainerGap())
         );
 
+        selectSearchMethod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ISBN", "BookName", "Author" }));
+
+        searchBy.setText("Search by");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,20 +254,31 @@ public class BookSearching extends SuperMenu {
                         .addComponent(search))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(81, 81, 81)
-                        .addComponent(keysearch, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(keysearch, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(selectSearchMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(searchBy)
+                                .addGap(11, 11, 11)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(booksearch, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(keysearch, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(keysearch, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(searchBy)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(selectSearchMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(search)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(main)
                 .addGap(20, 20, 20))
         );
@@ -188,6 +297,9 @@ public class BookSearching extends SuperMenu {
     }//GEN-LAST:event_mainActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+        
+        
+        
         CSDbDelegate db = new CSDbDelegate("cs14sitkmutt.me","3306","CSC105_G1","CSC105_G1","CSC105_G1");
         db.connect();
         // check if input is int so it will be only ISBN
@@ -206,9 +318,7 @@ public class BookSearching extends SuperMenu {
                     for(HashMap l : list){
                         jPanel1.setVisible(true);
                         if(l.get("ISBN").equals(keysearch.getText())){
-                            table.setValueAt(l.get("Title"), 0, 0);
-                            table.setValueAt(l.get("ISBN"), 0, 1);
-                            table.setValueAt(l.get("Authors"), 0, 2);
+                            poppulate(l.get("ISBN").toString(), l.get("Title").toString(), l.get("Authors").toString());
                             break;
                         }
                     }
@@ -237,9 +347,7 @@ public class BookSearching extends SuperMenu {
                         for(HashMap l : list3){
                             jPanel1.setVisible(true);
                             if(l.get("Authors").equals(keysearch.getText())){
-                                table.setValueAt(l.get("Title"), 0, 0);
-                                table.setValueAt(l.get("ISBN"), 0, 1);
-                                table.setValueAt(l.get("Authors"), 0, 2);
+                                poppulate(l.get("ISBN").toString(), l.get("Title").toString(), l.get("Authors").toString());
                                 break;
                             }
                         }
@@ -283,6 +391,8 @@ public class BookSearching extends SuperMenu {
     private javax.swing.JTextField keysearch;
     private javax.swing.JButton main;
     private javax.swing.JButton search;
+    private javax.swing.JLabel searchBy;
+    private javax.swing.JComboBox<String> selectSearchMethod;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

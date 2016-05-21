@@ -5,7 +5,6 @@
  */
 package projectlibrary.GUI;
 
-import edu.sit.cs.db.CSDbDelegate;
 import projectlibrary.database.dbInsertBook;
 /**
  *
@@ -13,23 +12,16 @@ import projectlibrary.database.dbInsertBook;
  */
 
 
-public class AddBook extends javax.swing.JFrame {
-    CSDbDelegate db ;
-    String status;
-    String id;
-    private Object usertxt;
-    private Object booknametxt;
-    private Object isbntxt;
+public class AddBook extends SuperMenu {
+
+
     public AddBook(String id,String status) {
         initComponents();
         this.status = status;
         this.id = id;
     }
-
-    private AddBook() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,7 +48,6 @@ public class AddBook extends javax.swing.JFrame {
         setTitle("Add book");
         setBackground(new java.awt.Color(0, 51, 51));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(500, 500));
 
         cancel.setText("Cancel");
         cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -87,30 +78,6 @@ public class AddBook extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Prices :");
-
-        title.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                titleActionPerformed(evt);
-            }
-        });
-
-        isbn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                isbnActionPerformed(evt);
-            }
-        });
-
-        author.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                authorActionPerformed(evt);
-            }
-        });
-
-        price.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                priceActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,8 +138,7 @@ public class AddBook extends javax.swing.JFrame {
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
 
         dispose();
-        MainMenuAdmin bmain = new MainMenuAdmin(id,status);
-        bmain.setVisible(true);
+        createMenuAdmin(status, id);
     }//GEN-LAST:event_cancelActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
@@ -180,26 +146,6 @@ public class AddBook extends javax.swing.JFrame {
         insertBook();
     }//GEN-LAST:event_addActionPerformed
 
-    private void titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_titleActionPerformed
-
-    private void isbnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isbnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_isbnActionPerformed
-
-    private void authorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_authorActionPerformed
-
-    private void priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_priceActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-  
     
     public void insertBook(){
         dbInsertBook insert = new dbInsertBook();

@@ -15,6 +15,7 @@ package projectlibrary.GUI;
 public class MainMenu extends SuperMenu {
 
     public MainMenu(String id,String status) {
+
         initComponents();
         this.status = status;
         this.id = id;

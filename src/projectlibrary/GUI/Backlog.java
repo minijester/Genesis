@@ -19,6 +19,7 @@ public class Backlog extends SuperMenu {
 
     CSDbDelegate db ;
     public Backlog(String id,String status) {
+
         initComponents();
         this.status = status;
         this.id = id;
