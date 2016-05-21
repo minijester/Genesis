@@ -16,7 +16,7 @@ public class dbLogin extends ConnectDB implements CheckInterface{
 
     @Override
     public ArrayList<HashMap> checkID(String user) {
-         String sta = "SELECT * FROM LibrayAccount where ID = '"+ user + "'";
+         String sta = "SELECT * FROM LibrayAccount where userID = '"+ user + "'";
          System.out.println(sta);
          ArrayList<HashMap> list2 = db.queryRows(sta);
          System.out.println(list2);
@@ -25,6 +25,7 @@ public class dbLogin extends ConnectDB implements CheckInterface{
          
          return list2;
     }
+    
 
     @Override
     public ArrayList<HashMap> checkBookISBN(String isbn) {

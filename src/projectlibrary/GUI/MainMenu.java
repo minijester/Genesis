@@ -19,6 +19,8 @@ public class MainMenu extends SuperMenu {
         initComponents();
         this.status = status;
         this.id = id;
+        this.setLocationRelativeTo(null);
+	this.setResizable(false);
     }
     
  
@@ -50,7 +52,7 @@ public class MainMenu extends SuperMenu {
         library.setFont(new java.awt.Font("Stencil", 0, 36)); // NOI18N
         library.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Library System.png"))); // NOI18N
         jPanel1.add(library);
-        library.setBounds(0, 0, 670, 108);
+        library.setBounds(30, 0, 560, 108);
 
         info.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Information icon.png"))); // NOI18N
@@ -72,10 +74,9 @@ public class MainMenu extends SuperMenu {
             }
         });
         jPanel1.add(search);
-        search.setBounds(300, 140, 231, 41);
+        search.setBounds(320, 140, 231, 41);
 
         backlog.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        backlog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/notepad-icon.png"))); // NOI18N
         backlog.setText("Backlog");
         backlog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,7 +84,7 @@ public class MainMenu extends SuperMenu {
             }
         });
         jPanel1.add(backlog);
-        backlog.setBounds(190, 250, 149, 41);
+        backlog.setBounds(200, 240, 180, 50);
 
         logout.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         logout.setText("Log out");
@@ -93,22 +94,22 @@ public class MainMenu extends SuperMenu {
             }
         });
         jPanel1.add(logout);
-        logout.setBounds(230, 340, 93, 31);
+        logout.setBounds(220, 370, 140, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Library.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(-50, -10, 610, 480);
+        jLabel1.setBounds(-50, -10, 650, 480);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
         );
 
         pack();

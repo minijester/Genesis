@@ -5,7 +5,6 @@
  */
 package projectlibrary.GUI;
 
-import edu.sit.cs.db.CSDbDelegate;
 import javax.swing.JOptionPane;
 import projectlibrary.database.dbRegis;
 
@@ -18,6 +17,8 @@ public class Register extends SuperMenu {
     
     public Register() {
         initComponents();
+        this.setLocationRelativeTo(null);
+	this.setResizable(false);
     }
     
     public void doRegis(){
@@ -32,48 +33,57 @@ public class Register extends SuperMenu {
         }
 
         if ( goregis == true){
+            dbRegis.dbConnect();
             String str = String.valueOf(passtxt.getPassword());
-            regis.regis(idtxt.getText(), str, nametxt.getText(), surtxt.getText(), date.getSelectedItem(), month.getSelectedItem(),
-                    year.getSelectedItem(), housedatetxt.getText(), villagetxt.getText(), streettxt.getText(), subdistricttxt.getText(),
-                    districttxt.getText(), provincetxt.getText(), postcodetxt.getText(), phonenumtxt.getText());
-            /** SQL Insert
-            String str = String.valueOf(passtxt.getPassword());
-            String sql = "INSERT INTO LibrayAccount "
-                    + "(Status,ID,Pass,Name,Surname,DateOfBirth,MonthBirth,YearBirth,HouseDate,Village,Street,SubDistrict,District,Province,PostCode,PhoneNum,BookInLoan)"
-                    + "VALUES ('" + "Member" + "','"
-                    + idtxt.getText() + "','"
-                    + str + "','"
-                    + nametxt.getText() + "','"
-                    + surtxt.getText() + "','"
-                    + date.getSelectedItem() + "','"
-                    + month.getSelectedItem()+ "','"
-                    + year.getSelectedItem() + "','"
-                    + housedatetxt.getText() + "','"
-                    + villagetxt.getText() + "','"
-                    + streettxt.getText() + "','"
-                    + subdistricttxt.getText() + "','"
-                    + districttxt.getText() + "','"
-                    + provincetxt.getText() + "','"
-                    + postcodetxt.getText() + "','"
-                    + phonenumtxt.getText() + "',' "
-                    + "No" + "') ";
-            System.out.println(sql);
-            con.executeQuery(sql);
-            
-            String back = "INSERT INTO LibraryBacklog "
-                    + "(ID,ISBN,BookName,BurrowDate,ReturnDate)"
-                    + "VALUES ('" + idtxt.getText() + "','"
-                    + 0 + "','"
-                    + "/" + "','"
-                    + "/" + "','"
-                    + "/" + "') ";
-            System.out.println(back);
-            con.executeQuery(back);
-            
-            con.disconnect();*/
-            JOptionPane.showMessageDialog(rootPane, "Register successfully");
-            dispose();
-            createNewLogin();
+            boolean check = regis.checkAlreadyHaveID(idtxt.getText());
+            if(check == true){
+                JOptionPane.showMessageDialog(rootPane, "Already have this ID in system");
+            }
+            else{
+                regis.regis(idtxt.getText(), str, nametxt.getText(), surtxt.getText(),emailtxt.getText(),citizentxt.getText(),date.getSelectedItem(), month.getSelectedItem().toString(),
+                        year.getSelectedItem(), housedatetxt.getText(), villagetxt.getText(), streettxt.getText(), subdistricttxt.getText(),
+                        districttxt.getText(), provincetxt.getText(), postcodetxt.getText(), phonenumtxt.getText());
+                regis.inputBacklog(idtxt.getText());
+                /** SQL Insert
+                String str = String.valueOf(passtxt.getPassword());
+                String sql = "INSERT INTO LibrayAccount "
+                        + "(Status,ID,Pass,Name,Surname,DateOfBirth,MonthBirth,YearBirth,HouseDate,Village,Street,SubDistrict,District,Province,PostCode,PhoneNum,BookInLoan)"
+                        + "VALUES ('" + "Member" + "','"
+                        + idtxt.getText() + "','"
+                        + str + "','"
+                        + nametxt.getText() + "','"
+                        + surtxt.getText() + "','"
+                        + date.getSelectedItem() + "','"
+                        + month.getSelectedItem()+ "','"
+                        + year.getSelectedItem() + "','"
+                        + housedatetxt.getText() + "','"
+                        + villagetxt.getText() + "','"
+                        + streettxt.getText() + "','"
+                        + subdistricttxt.getText() + "','"
+                        + districttxt.getText() + "','"
+                        + provincetxt.getText() + "','"
+                        + postcodetxt.getText() + "','"
+                        + phonenumtxt.getText() + "',' "
+                        + "No" + "') ";
+                System.out.println(sql);
+                con.executeQuery(sql);
+
+                String back = "INSERT INTO LibraryBacklog "
+                        + "(ID,ISBN,BookName,BurrowDate,ReturnDate)"
+                        + "VALUES ('" + idtxt.getText() + "','"
+                        + 0 + "','"
+                        + "/" + "','"
+                        + "/" + "','"
+                        + "/" + "') ";
+                System.out.println(back);
+                con.executeQuery(back);
+
+                con.disconnect();*/
+                JOptionPane.showMessageDialog(rootPane, "Register successfully");
+                dbRegis.disconnect();
+                dispose();
+                createNewLogin();
+            }
         }
     }
     
@@ -111,6 +121,10 @@ public class Register extends SuperMenu {
         month = new javax.swing.JComboBox();
         year = new javax.swing.JComboBox();
         passtxt = new javax.swing.JPasswordField();
+        email = new javax.swing.JLabel();
+        emailtxt = new javax.swing.JTextField();
+        citizen = new javax.swing.JLabel();
+        citizentxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -177,10 +191,15 @@ public class Register extends SuperMenu {
 
         year.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015" }));
 
+        email.setText("Email :");
+
+        citizen.setText("CitizenID :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,14 +264,23 @@ public class Register extends SuperMenu {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pass)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(passtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(id)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(email)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(emailtxt))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(id)
+                                .addGap(18, 18, 18)
+                                .addComponent(idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addComponent(jLabel1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pass)
+                            .addComponent(citizen))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(passtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(citizentxt, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,12 +289,17 @@ public class Register extends SuperMenu {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(id))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(id)
                     .addComponent(pass)
                     .addComponent(passtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(citizen, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(citizentxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(name)
                     .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,7 +335,7 @@ public class Register extends SuperMenu {
                             .addComponent(postcodetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(phonenum)
                             .addComponent(phonenumtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(95, Short.MAX_VALUE))
+                        .addContainerGap(111, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -376,14 +409,20 @@ public class Register extends SuperMenu {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
         // go back to login page
-        createNewLogin();
+        FirstPage fp = new FirstPage();
+        fp.setVisible(true);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel birth;
+    private javax.swing.JLabel citizen;
+    private javax.swing.JTextField citizentxt;
     private javax.swing.JComboBox date;
     private javax.swing.JLabel district;
     private javax.swing.JTextField districttxt;
+    private javax.swing.JLabel email;
+    private javax.swing.JTextField emailtxt;
     private javax.swing.JLabel housedate;
     private javax.swing.JTextField housedatetxt;
     private javax.swing.JLabel id;

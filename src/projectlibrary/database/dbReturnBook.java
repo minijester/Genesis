@@ -20,7 +20,7 @@ public class dbReturnBook extends ConnectDB implements CheckInterface{
     
     @Override
     public ArrayList<HashMap> checkID(String user){
-        String sqlid = "SELECT * FROM LibrayAccount WHERE ID = '"+ user + "'";
+        String sqlid = "SELECT * FROM LibrayAccount WHERE userID = '"+ user + "'";
         ArrayList<HashMap> list = db.queryRows(sqlid);
         System.out.println(list);
         boolean delSuccess = db.executeQuery(sqlid);
@@ -42,17 +42,17 @@ public class dbReturnBook extends ConnectDB implements CheckInterface{
     
     public void updateBook(String isbn,String user){
         //update book burrowdate
-        String updateday = "UPDATE LibraryBook SET BurrowDate = '"+ "No" +"'WHERE ISBN = '"+ isbn +"'";
+        String updateday = "UPDATE LibraryBook SET BurrowDate = '"+ "no" +"'WHERE ISBN = '"+ isbn +"'";
         System.out.println(updateday);
         Boolean delSucces5 = db.executeQuery(updateday);
         System.out.println(delSucces5);
          //update book burrow by ...
-        String updateby = "UPDATE LibraryBook SET BurrowBy = '"+ "No" +"'WHERE ISBN = '"+isbn +"'";
+        String updateby = "UPDATE LibraryBook SET BurrowBy = '"+ "no" +"'WHERE ISBN = '"+isbn +"'";
         System.out.println(updateby);
         Boolean delSucces6 = db.executeQuery(updateby);
         System.out.println(delSucces6);
         //update book status
-        String updateinloan = "UPDATE LibrayAccount SET BookInLoan = '"+ " No" +"'WHERE ID = '"+user +"'";
+        String updateinloan = "UPDATE LibrayAccount SET Bookinloan = '"+ " No" +"'WHERE userID = '"+user +"'";
         System.out.println(updateinloan);
         Boolean delSucces7 = db.executeQuery(updateinloan);
         System.out.println(delSucces7);

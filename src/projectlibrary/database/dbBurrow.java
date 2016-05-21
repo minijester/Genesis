@@ -20,7 +20,7 @@ public class dbBurrow extends ConnectDB implements CheckInterface{
     
     @Override
     public ArrayList<HashMap> checkID(String user) {
-        String sql = "SELECT * FROM LibrayAccount WHERE ID = '"+ user +"'";
+        String sql = "SELECT * FROM LibrayAccount WHERE userID = '"+ user +"'";
         System.out.println(sql);
         ArrayList<HashMap> listuser = db.queryRows(sql);
         System.out.println(listuser);
@@ -67,7 +67,7 @@ public class dbBurrow extends ConnectDB implements CheckInterface{
         Boolean delSucces6 = db.executeQuery(updateby);
         System.out.println(delSucces6);
         //update book in loan (user)
-        String updateinloan = "UPDATE LibrayAccount SET BookInLoan = '"+ bname+"'WHERE ID = '"+ user + "'";
+        String updateinloan = "UPDATE LibrayAccount SET Bookinloan = '"+ bname+"'WHERE userID = '"+ user + "'";
         System.out.println(updateinloan);
         Boolean delSucces7 = db.executeQuery(updateinloan);
         System.out.println(delSucces7);

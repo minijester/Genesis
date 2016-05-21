@@ -26,6 +26,8 @@ public class BookSearching extends SuperMenu {
         initComponents();
         jPanel1.setVisible(false);
         createColumns();
+        this.setLocationRelativeTo(null);
+	this.setResizable(false);
     }
     
     @Override
@@ -73,8 +75,12 @@ public class BookSearching extends SuperMenu {
         return option;
     }
     
+    public void clearTable(){
+        dm.setRowCount(0);
+    }
+    
     public void search(){
-        
+        dbBookSearching.dbConnect();
         if(keysearch.getText().isEmpty()){
             JOptionPane.showMessageDialog(rootPane,"Please insert key in the box");
         }
@@ -88,17 +94,16 @@ public class BookSearching extends SuperMenu {
                     }
                     else{
                         for(HashMap l : listISBN){
-                            jPanel1.setVisible(true);
-                            if(l.get("ISBN").equals(keysearch.getText())){
+                                jPanel1.setVisible(true);
+                            //if(l.get("ISBN").equals(keysearch.getText())){
                                 poppulate(l.get("ISBN").toString(), l.get("Title").toString(), l.get("Authors").toString());
-                                break;
-                            }
+                            //}
                         }
                     }
                     
                     break;
                     
-                case "Book name":
+                case "BookName":
                     ArrayList<HashMap> listBookName = bs.searchBookName(keysearch.getText());
                     if(listBookName.isEmpty()){
                     JOptionPane.showMessageDialog(rootPane, "Sorry, we don't has this book in this Library");
@@ -106,10 +111,9 @@ public class BookSearching extends SuperMenu {
                     else{
                         for(HashMap l : listBookName){
                             jPanel1.setVisible(true);
-                            if(l.get("Title").equals(keysearch.getText())){
+                            //if(l.get("Title").equals(keysearch.getText())){
                                 poppulate(l.get("ISBN").toString(), l.get("Title").toString(), l.get("Authors").toString());
-                                break;
-                            }
+                            //}
                         }
                     }
                     break;
@@ -122,10 +126,9 @@ public class BookSearching extends SuperMenu {
                     else{
                         for(HashMap l : listAuthors){
                             jPanel1.setVisible(true);
-                            if(l.get("Authors").equals(keysearch.getText())){
+                            //if(l.get("Authors").equals(keysearch.getText())){
                                 poppulate(l.get("ISBN").toString(), l.get("Title").toString(), l.get("Authors").toString());
-                                break;
-                            }
+                            //}
                         }
                     }
                     
@@ -151,15 +154,14 @@ public class BookSearching extends SuperMenu {
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         keysearch = new javax.swing.JTextField();
-        search = new javax.swing.JButton();
         booksearch = new javax.swing.JLabel();
         main = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        clear = new javax.swing.JButton();
         selectSearchMethod = new javax.swing.JComboBox<>();
         searchBy = new javax.swing.JLabel();
+        search = new javax.swing.JButton();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -173,14 +175,6 @@ public class BookSearching extends SuperMenu {
         keysearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 keysearchMousePressed(evt);
-            }
-        });
-
-        search.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        search.setText("Search");
-        search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchActionPerformed(evt);
             }
         });
 
@@ -207,41 +201,31 @@ public class BookSearching extends SuperMenu {
         ));
         jScrollPane1.setViewportView(table);
 
-        clear.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        clear.setText("Clear");
-        clear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(clear))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(clear)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
         );
 
         selectSearchMethod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ISBN", "BookName", "Author" }));
 
         searchBy.setText("Search by");
+
+        search.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        search.setText("Search");
+        search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -251,43 +235,44 @@ public class BookSearching extends SuperMenu {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(201, 201, 201)
-                        .addComponent(main))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addComponent(search))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(keysearch, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(selectSearchMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(searchBy)
-                                .addGap(11, 11, 11)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(81, 81, 81)
+                                .addComponent(keysearch, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(searchBy, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(selectSearchMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(216, 216, 216)
+                                .addComponent(main))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(231, 231, 231)
+                                .addComponent(search)))
+                        .addGap(0, 23, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(booksearch, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(keysearch, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(searchBy)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(keysearch, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(search))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(searchBy, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selectSearchMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(search)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(selectSearchMethod, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(main)
-                .addGap(20, 20, 20))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -372,19 +357,12 @@ public class BookSearching extends SuperMenu {
 
     private void keysearchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_keysearchMousePressed
         keysearch.setText(null);
+        clearTable();
     }//GEN-LAST:event_keysearchMousePressed
-
-    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
-        table.setValueAt(null, 0, 0);
-        table.setValueAt(null, 0, 1);
-        table.setValueAt(null, 0, 2);
-        jPanel1.setVisible(false);
-    }//GEN-LAST:event_clearActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel booksearch;
-    private javax.swing.JButton clear;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;

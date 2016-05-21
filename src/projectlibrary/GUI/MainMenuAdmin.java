@@ -16,6 +16,8 @@ public class MainMenuAdmin extends SuperMenu {
         this.status = status;
         this.id = id;
         initComponents();
+        this.setLocationRelativeTo(null);
+	this.setResizable(false);
     }
   
     
@@ -70,7 +72,7 @@ public class MainMenuAdmin extends SuperMenu {
             }
         });
         jPanel1.add(bs);
-        bs.setBounds(30, 210, 231, 41);
+        bs.setBounds(20, 210, 231, 41);
 
         bl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         bl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/notepad-icon.png"))); // NOI18N
@@ -81,7 +83,7 @@ public class MainMenuAdmin extends SuperMenu {
             }
         });
         jPanel1.add(bl);
-        bl.setBounds(70, 300, 149, 41);
+        bl.setBounds(20, 300, 149, 41);
 
         ab.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         ab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/add-book-icon.png"))); // NOI18N
@@ -92,7 +94,7 @@ public class MainMenuAdmin extends SuperMenu {
             }
         });
         jPanel1.add(ab);
-        ab.setBounds(430, 210, 169, 41);
+        ab.setBounds(340, 210, 169, 41);
 
         burrow.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         burrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/borrow-icon.png"))); // NOI18N
@@ -103,7 +105,7 @@ public class MainMenuAdmin extends SuperMenu {
             }
         });
         jPanel1.add(burrow);
-        burrow.setBounds(390, 130, 229, 41);
+        burrow.setBounds(340, 130, 229, 41);
 
         returnsys.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         returnsys.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/Return-icon.png"))); // NOI18N
@@ -114,7 +116,7 @@ public class MainMenuAdmin extends SuperMenu {
             }
         });
         jPanel1.add(returnsys);
-        returnsys.setBounds(390, 300, 225, 41);
+        returnsys.setBounds(340, 300, 225, 41);
 
         logout.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         logout.setText("Log out");
@@ -124,7 +126,7 @@ public class MainMenuAdmin extends SuperMenu {
             }
         });
         jPanel1.add(logout);
-        logout.setBounds(260, 400, 113, 37);
+        logout.setBounds(240, 390, 113, 37);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectlibrary/GUI/img/LibraryBackground.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -135,11 +137,11 @@ public class MainMenuAdmin extends SuperMenu {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
         );
 
         pack();

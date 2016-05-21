@@ -26,6 +26,8 @@ public class Burrow extends SuperMenu {
         this.status = status;
         this.id = id;
         initComponents();
+        this.setLocationRelativeTo(null);
+	this.setResizable(false);
     }
     
     @Override
@@ -41,14 +43,17 @@ public class Burrow extends SuperMenu {
     }
     
     public void burrowBook(){
+        dbBurrow.dbConnect();
         DateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
         String datebu = formater.format(datepick.getDate());
+        
         if(!usertxt.getText().isEmpty() && !booknametxt.getText().isEmpty() && !isbntxt.getText().isEmpty()){
-            CSDbDelegate db = new CSDbDelegate("cs14sitkmutt.me","3306","CSC105_G1","CSC105_G1","CSC105_G1");
-            db.connect();
+            //CSDbDelegate db = new CSDbDelegate("128.199.117.93", "3306", "genius", "user", "iloveoosd");
+            //db.connect();
             // check id
             ArrayList<HashMap> list = burr.checkID(usertxt.getText());
-            /**String sql = "SELECT * FROM LibrayAccount WHERE ID = '"+ usertxt.getText()+ "'";
+            System.out.println(list);
+            /**String sql = "SELECT * FROM LibrayAccount WHERE userID = '"+ usertxt.getText()+ "'";
             System.out.println(sql);
             ArrayList<HashMap> list = db.queryRows(sql);
             System.out.println(list);
@@ -60,8 +65,9 @@ public class Burrow extends SuperMenu {
                 }
             else{
                 for(HashMap l : list){
-                    System.out.println(l.get("BookInLoan"));
-                    if(l.get("BookInLoan").equals(" No")){
+                    System.out.println(l);
+                    System.out.println(l.get("bookinloan"));
+                    if(l.get("bookinloan").equals(" No")){
                         
                         // check bookname
                         ArrayList<HashMap> list2 = burr.checkBookName(booknametxt.getText());
@@ -92,7 +98,7 @@ public class Burrow extends SuperMenu {
                                     else{
                                         for(HashMap l3 : list3){
                                             //check status book
-                                            if(l3.get("Status").equals("Available")){
+                                            if(l3.get("Status").equals("available")){
                                                 burr.UpdateBook(isbntxt.getText(), usertxt.getText(), datebu, booknametxt.getText());
                                                 
                                                 /** update status book
@@ -138,6 +144,7 @@ public class Burrow extends SuperMenu {
         else{
             JOptionPane.showMessageDialog(rootPane, "Please insert all of the data in the box");
         }
+        dbBurrow.disconnect();
     }
  
 
@@ -185,7 +192,7 @@ public class Burrow extends SuperMenu {
         isbntxt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         burrow.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        burrow.setText("Borrow");
+        burrow.setText("Burrow");
         burrow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 burrowActionPerformed(evt);
@@ -207,6 +214,12 @@ public class Burrow extends SuperMenu {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(cancel)
+                .addGap(50, 50, 50)
+                .addComponent(burrow)
+                .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -226,17 +239,11 @@ public class Burrow extends SuperMenu {
                         .addGap(78, 78, 78)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(isbntxt, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(datepick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(burrowSystem, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(burrow)
-                        .addGap(33, 33, 33)
-                        .addComponent(cancel)
-                        .addGap(18, 18, 18))))
+                            .addComponent(datepick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(burrowSystem)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +265,7 @@ public class Burrow extends SuperMenu {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(date)
                     .addComponent(datepick, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(burrow)
                     .addComponent(cancel))

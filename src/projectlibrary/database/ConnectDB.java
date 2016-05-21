@@ -14,7 +14,7 @@ public class ConnectDB {
     protected static CSDbDelegate db;
     
     public ConnectDB() {
-        dbConnect();
+        
     }
     
     public static void dbConnect() {

@@ -25,6 +25,9 @@ public class Backlog extends SuperMenu {
         this.status = status;
         this.id = id;
         jPanel1.setVisible(false);
+        this.setLocationRelativeTo(null);
+	this.setResizable(false);
+        createColumns();
     }
     
      private void createColumns(){
@@ -39,6 +42,30 @@ public class Backlog extends SuperMenu {
         String[] rowdata = {isbn,bookname,burrowd,returnd};
         dm.addRow(rowdata);  
     }
+    
+    public void clearTable(){
+        dm.setRowCount(0);
+    }
+    
+    public void showBacklog(){
+        dbBacklog.dbConnect();
+        ArrayList<HashMap> list = back.checkID(id); 
+        System.out.println(list);
+        jPanel1.setVisible(true);
+        if(list.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Sorry, don't have this ID in system");
+        }
+        else{
+            for(HashMap l : list){
+                poppulate(l.get("ISBN").toString(), l.get("BookName").toString(), l.get("BurrowDate").toString(),l.get("ReturnDate").toString());
+                /**backlogtable.setValueAt(l.get("BookName"), 0, 0);
+                backlogtable.setValueAt(l.get("ISBN"), 0, 1);
+                backlogtable.setValueAt(l.get("BurrowDate"), 0, 2);
+                backlogtable.setValueAt(l.get("ReturnDate"), 0, 3);     */   
+            }
+        }
+        dbBacklog.disconnect();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,8 +79,8 @@ public class Backlog extends SuperMenu {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         backlogtable = new javax.swing.JTable();
-        main = new javax.swing.JButton();
         show = new javax.swing.JButton();
+        main = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Backlog");
@@ -76,26 +103,15 @@ public class Backlog extends SuperMenu {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
-
-        main.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        main.setText("Main Menu");
-        main.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mainActionPerformed(evt);
-            }
-        });
 
         show.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         show.setText("Show Backlog");
@@ -105,31 +121,45 @@ public class Backlog extends SuperMenu {
             }
         });
 
+        main.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        main.setText("Main Menu");
+        main.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(192, 192, 192)
-                .addComponent(main))
-            .addComponent(backlog)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(show)
-                .addGap(147, 147, 147))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(backlog))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(184, 184, 184)
+                        .addComponent(show))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(224, 224, 224)
+                        .addComponent(main)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(backlog)
-                .addGap(29, 29, 29)
-                .addComponent(show)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(show)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(main)
-                .addGap(12, 12, 12))
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -141,22 +171,9 @@ public class Backlog extends SuperMenu {
     }//GEN-LAST:event_mainActionPerformed
 
     private void showActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showActionPerformed
-        ArrayList<HashMap> list = back.checkID(id); 
-
-        jPanel1.setVisible(true);
-        if(list.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Sorry, don't have this ID in system");
-        }
-        else{
-            for(HashMap l : list){
-                poppulate(l.get("ISBN").toString(), l.get("Title").toString(), l.get("BurrowDate").toString(),l.get("ReturnDate").toString());
-                /**backlogtable.setValueAt(l.get("BookName"), 0, 0);
-                backlogtable.setValueAt(l.get("ISBN"), 0, 1);
-                backlogtable.setValueAt(l.get("BurrowDate"), 0, 2);
-                backlogtable.setValueAt(l.get("ReturnDate"), 0, 3);     */   
-            }
-        }
-        dbBacklog.disconnect();
+        clearTable();
+        showBacklog();
+        
     }//GEN-LAST:event_showActionPerformed
 
     

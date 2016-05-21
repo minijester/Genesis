@@ -5,24 +5,43 @@
  */
 package projectlibrary.database;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import static projectlibrary.database.ConnectDB.db;
+
 /**
  *
  * @author Minijester
  */
-public class dbRegis extends ConnectDB {
+public class dbRegis extends ConnectDB  {
     
     public dbRegis(){
         super();
     }
     
-    public void regis(String id,String pass,String name,String surname,Object date,Object month, Object year, String hdate,
-                        String village,String street,String subdistrict,String district,String province,String postcode,String phone){
+    public boolean checkAlreadyHaveID(String user){
+        boolean have = false;
+        
+        String check = "SELECT * FROM LibrayAccount where userID = '"+ user + "'";
+        ArrayList<HashMap> id = db.queryRows(check);
+        if(!id.isEmpty()){
+            have = true;
+        }
+        return have;
+    }
+    
+    public void regis(String id,String pass,String name,String surname,String email,String citizenID,
+                        Object date,String month, Object year, String hdate,
+                        String village,String street,String subdistrict,String district,
+                        String province,String postcode,String phone){
         
         String sql = "INSERT INTO LibrayAccount "
-                    + "(Status,ID,Pass,Name,Surname,DateOfBirth,MonthBirth,YearBirth,HouseDate,Village,Street,SubDistrict,District,Province,PostCode,PhoneNum,BookInLoan)"
-                    + "VALUES ('" + "Member" + "','"
-                    + id + "','"
+                    + "(userID,status,pass,email,citizenID,name,surname,DateOfBirth,MonthBirth,YearBirth,address,village,street,sub_district,district,province,postCode,phoneNum,bookinloan)"
+                    + "VALUES ('" + id + "','"
+                    + "Member" + "','"
                     + pass + "','"
+                    + email + "','"
+                    + citizenID + "','"
                     + name + "','"
                     + surname + "','"
                     + date + "','"
@@ -39,15 +58,17 @@ public class dbRegis extends ConnectDB {
                     + "No" + "') ";
         System.out.println(sql);
         db.executeQuery(sql);
-            
-        String back = "INSERT INTO LibraryBacklog "
-                    + "(ID,ISBN,BookName,BurrowDate,ReturnDate)"
-                    + "VALUES ('" + id + "','"
-                    + 0 + "','"
-                    + "/" + "','"
-                    + "/" + "','"
-                    + "/" + "') ";
-        System.out.println(back);
-        db.executeQuery(back);
     }
+           
+        public void inputBacklog(String id){
+            String back = "INSERT INTO LibraryBacklog "
+                        + "(ID,ISBN,BookName,BurrowDate,ReturnDate)"
+                        + "VALUES ('" + id + "','"
+                        + 0 + "','"
+                        + "/" + "','"
+                        + "/" + "','"
+                        + "/" + "') ";
+            System.out.println(back);
+            db.executeQuery(back);
+        }
 }

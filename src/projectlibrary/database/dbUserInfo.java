@@ -19,7 +19,7 @@ public class dbUserInfo extends ConnectDB {
     }
     
     public ArrayList<HashMap> checkInfo(String id){
-        String sql = "SELECT * FROM LibrayAccount WHERE ID = '"+ id + "'";
+        String sql = "SELECT * FROM LibrayAccount WHERE userID = '"+ id + "'";
         ArrayList<HashMap> list = db.queryRows(sql);
         boolean delSuccess = db.executeQuery(sql);
         return list;

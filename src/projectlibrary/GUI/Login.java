@@ -6,7 +6,6 @@ package projectlibrary.GUI;
  */
 
 
-import edu.sit.cs.db.CSDbDelegate;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -32,8 +31,6 @@ public class Login extends SuperMenu {
     JButton register; // register button
     JLabel username; // id :
     JLabel password; // pass :
-    CSDbDelegate db ;
-    Session session;
     boolean login;
     dbLogin log = new dbLogin();
     
@@ -46,9 +43,7 @@ public class Login extends SuperMenu {
         register = new JButton("Register");
         username = new JLabel("ID : ");
         password = new JLabel("Pass : ");
-        db = new CSDbDelegate
-                    ("cs14sitkmutt.me","3306","CSC105_G1","CSC105_G1","CSC105_G1");
-        db.connect();
+        
         
         // set size and location of login frame
         setSize(300,200);
@@ -74,7 +69,6 @@ public class Login extends SuperMenu {
         getContentPane().add(loginpanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        session = new Session();
         blogin.addActionListener(new ActionListener() {
 
             @Override
@@ -122,8 +116,7 @@ public class Login extends SuperMenu {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                db.disconnect();
-                System.out.println(db.disconnect());
+                dbLogin.disconnect();
                 dispose();
                 Register r = new Register();
                 r.setVisible(true);
@@ -155,7 +148,7 @@ public class Login extends SuperMenu {
                     boolean delSuccess = db.executeQuery(sta);
                     System.out.println(delSuccess); */
                     for(HashMap l : list2){
-                        if(l.get("Status").equals("Member")){
+                        if(l.get("status").equals("Member")){
                             status = "Member";
                             id = txuser.getText();
                             JOptionPane.showMessageDialog(rootPane, "Login successfully"); 
@@ -168,7 +161,7 @@ public class Login extends SuperMenu {
                                 status = "Admin";
                                 id = txuser.getText();
                                 JOptionPane.showMessageDialog(rootPane, "Login successfully"); 
-                                dbLogin.dbConnect();
+                                dbLogin.disconnect();
                                 dispose();
                                 createMenu(status, id);
                             } 
@@ -203,18 +196,18 @@ public class Login extends SuperMenu {
     
     public String checkPassword2(String user , String password ){
         String output = "";
-        String sql = "SELECT * FROM LibrayAccount where ID = '"+ user+ "'";
-        ArrayList<HashMap> list = db.queryRows(sql);
-        boolean delSuccess = db.executeQuery(sql);
+        dbLogin.dbConnect();
+        ArrayList<HashMap> list = log.checkID(user);
+        System.out.println(list);
         if(list.isEmpty()){
                 output = "Wrong User , Please register ";
             }
         else{
             for(HashMap l : list){
-                if(l.get("Pass").equals(password)){
+                if(l.get("pass").equals(password)){
                         output = "Correct password";
-                        session.identi( (""+l.get("ID")) , (""+l.get("Pass")) );
                         this.login = true;
+                        
                         break;
                     }
                     else{
