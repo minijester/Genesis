@@ -31,6 +31,13 @@ public class Register extends SuperMenu {
             JOptionPane.showMessageDialog(rootPane, "Password must be 4 - 12 characters");
             goregis = false;
         }
+        if (emailtxt.getText().isEmpty() || citizentxt.getText().isEmpty()|| nametxt.getText().isEmpty()
+                || surtxt.getText().isEmpty()|| housedatetxt.getText().isEmpty()|| villagetxt.getText().isEmpty()
+                || streettxt.getText().isEmpty()|| subdistricttxt.getText().isEmpty()|| districttxt.getText().isEmpty()
+                || provincetxt.getText().isEmpty()|| postcodetxt.getText().isEmpty()|| phonenumtxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "All datafield must be field.");
+            goregis = false;
+        }
 
         if ( goregis == true){
             dbRegis.dbConnect();

@@ -51,11 +51,15 @@ public class dbReturnBook extends ConnectDB implements CheckInterface{
         System.out.println(updateby);
         Boolean delSucces6 = db.executeQuery(updateby);
         System.out.println(delSucces6);
-        //update book status
+        //update user status
         String updateinloan = "UPDATE LibrayAccount SET Bookinloan = '"+ " No" +"'WHERE userID = '"+user +"'";
         System.out.println(updateinloan);
         Boolean delSucces7 = db.executeQuery(updateinloan);
         System.out.println(delSucces7);
-        
+        //update book status
+        String updatebookstatus = "UPDATE LibrayBook SET Status = '"+ "available" +"'WHERE ISBN = '"+isbn +"'";
+        System.out.println(updatebookstatus);
+        Boolean delSucces8 = db.executeQuery(updatebookstatus);
+        System.out.println(delSucces8);
     }
 }

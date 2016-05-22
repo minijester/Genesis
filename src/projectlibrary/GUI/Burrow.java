@@ -43,11 +43,13 @@ public class Burrow extends SuperMenu {
     }
     
     public void burrowBook(){
+        
         dbBurrow.dbConnect();
         DateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
         String datebu = formater.format(datepick.getDate());
         
-        if(!usertxt.getText().isEmpty() && !booknametxt.getText().isEmpty() && !isbntxt.getText().isEmpty()){
+        if(!usertxt.getText().isEmpty() && !booknametxt.getText().isEmpty() && !isbntxt.getText().isEmpty() && !booknametxt.getText().isEmpty()
+                && datepick.getDate().toString() != null){
             //CSDbDelegate db = new CSDbDelegate("128.199.117.93", "3306", "genius", "user", "iloveoosd");
             //db.connect();
             // check id

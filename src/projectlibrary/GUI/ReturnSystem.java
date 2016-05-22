@@ -47,7 +47,7 @@ public class ReturnSystem extends SuperMenu {
         String datereturn = formater.format(datepick.getDate());
         int returndate = getdate(datereturn);
 
-        if(!usertxt.getText().isEmpty() && !isbntxt.getText().isEmpty()){
+        if(!usertxt.getText().isEmpty() && !isbntxt.getText().isEmpty() && datereturn != null){
             /**db = new CSDbDelegate("cs14sitkmutt.me","3306","CSC105_G1","CSC105_G1","CSC105_G1");
             db.connect();
             String sql = "SELECT * FROM LibrayAccount WHERE ID = '"+ usertxt.getText()+ "'";
@@ -151,6 +151,9 @@ public class ReturnSystem extends SuperMenu {
                     }
                 }
             }
+        }
+        else{
+            JOptionPane.showConfirmDialog(rootPane, "All data must be field");
         }
         dbReturnBook.disconnect();
     }

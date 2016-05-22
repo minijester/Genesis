@@ -39,7 +39,7 @@ public class dbBookSearching extends ConnectDB {
     }
     
     public ArrayList<HashMap> searchAuthor(String key){
-        String sql3 = "SELECT * FROM LibraryBook WHERE Author LIKE '"+ "%" + key + "%" + "'";
+        String sql3 = "SELECT * FROM LibraryBook WHERE Authors LIKE '"+ "%" + key + "%" + "'";
         System.out.println(sql3);
         ArrayList<HashMap> list3 = db.queryRows(sql3);
         boolean delSuccess3 = db.executeQuery(sql3);
