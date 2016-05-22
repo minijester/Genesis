@@ -55,7 +55,7 @@ public class BookSearching extends SuperMenu {
     }
 
     
-    public boolean isISBN(){
+    /**public boolean isISBN(){
         boolean keyinputisint = false;
         int isbn;
         try {
@@ -67,7 +67,7 @@ public class BookSearching extends SuperMenu {
         //keyinput = true;
         //}
         return keyinputisint;
-    }
+    }*/
     
     // check search option from combobox
     public String checkOption(){

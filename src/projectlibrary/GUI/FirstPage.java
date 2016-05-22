@@ -5,7 +5,6 @@
  */
 package projectlibrary.GUI;
 
-import javax.swing.JFrame;
 
 /**
  *

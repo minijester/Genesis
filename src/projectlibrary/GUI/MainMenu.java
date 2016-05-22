@@ -8,7 +8,7 @@ package projectlibrary.GUI;
 
 /**
  *
- * @author Sae
+ * @author Minijester
  */
 
 // เปลี่ยนจาก extend เป็น deligation

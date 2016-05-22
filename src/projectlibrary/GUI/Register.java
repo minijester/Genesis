@@ -15,17 +15,20 @@ import projectlibrary.database.dbRegis;
 public class Register extends SuperMenu {
     dbRegis regis = new dbRegis();
     
+    
     public Register() {
         initComponents();
         this.setLocationRelativeTo(null);
 	this.setResizable(false);
     }
     
-    public void doRegis(){
+    public boolean checkInput(){
         boolean goregis = true;
+
         if (idtxt.getText().length() > 12 || idtxt.getText().length() < 4){
             JOptionPane.showMessageDialog(rootPane, "ID must be 4 - 12 characters");
             goregis = false;
+
         }
         if (passtxt.getPassword().length > 12 || passtxt.getPassword().length < 4){
             JOptionPane.showMessageDialog(rootPane, "Password must be 4 - 12 characters");
@@ -38,15 +41,25 @@ public class Register extends SuperMenu {
             JOptionPane.showMessageDialog(rootPane, "All datafield must be field.");
             goregis = false;
         }
-
-        if ( goregis == true){
-            dbRegis.dbConnect();
-            String str = String.valueOf(passtxt.getPassword());
-            boolean check = regis.checkAlreadyHaveID(idtxt.getText());
-            if(check == true){
+        return goregis;
+    }
+    
+    public boolean checkHaveIDInSystem(){
+        dbRegis.dbConnect();
+        String str = String.valueOf(passtxt.getPassword());
+        boolean check = regis.checkAlreadyHaveID(idtxt.getText());
+        dbRegis.disconnect();
+        return check;
+    }
+    public void doRegis(){
+        if ( checkInput() == true){
+            
+            if(checkHaveIDInSystem() == true){
                 JOptionPane.showMessageDialog(rootPane, "Already have this ID in system");
             }
             else{
+                dbRegis.dbConnect();
+                String str = String.valueOf(passtxt.getPassword());
                 regis.regis(idtxt.getText(), str, nametxt.getText(), surtxt.getText(),emailtxt.getText(),citizentxt.getText(),date.getSelectedItem(), month.getSelectedItem().toString(),
                         year.getSelectedItem(), housedatetxt.getText(), villagetxt.getText(), streettxt.getText(), subdistricttxt.getText(),
                         districttxt.getText(), provincetxt.getText(), postcodetxt.getText(), phonenumtxt.getText());
